@@ -4,9 +4,9 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import Loading from "../Loading";
 
 const Dashboard = () => {
-    const [users, setUsers] = useState(0);
-    const [withdraws, setWithdraws] = useState(0);
-    const [kyc, setKYC] = useState(0);
+    const [users, setUsers] = useState(null);
+    const [withdraws, setWithdraws] = useState(null);
+    const [kyc, setKYC] = useState(null);
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
@@ -14,7 +14,6 @@ const Dashboard = () => {
         const userController = new AbortController();
         const WController = new AbortController();
         const KYCController = new AbortController();
-
 
         axiosPrivate.get('/admin/auth/v1/user', {
             params: {offset: 0, size: 1}
@@ -57,10 +56,10 @@ const Dashboard = () => {
 
     return <div className="container">
         <div className="row mt-3">
-            <CounterWidget count={users ? users : <Loading/>} icon="fa-users" name="Total Users"/>
-            <CounterWidget count={withdraws ? withdraws : <Loading/>} icon="fa-money-bill-transfer"
+            <CounterWidget count={users !== null ? users : <Loading/>} icon="fa-users" name="Total Users"/>
+            <CounterWidget count={withdraws !== null ? withdraws : <Loading/>} icon="fa-money-bill-transfer"
                            name="Withdraw Req"/>
-            <CounterWidget count={kyc ? kyc : <Loading/>} icon="fa-user" name="KYC Req"/>
+            <CounterWidget count={kyc !== null ? kyc : <Loading/>} icon="fa-user" name="KYC Req"/>
         </div>
     </div>
 }

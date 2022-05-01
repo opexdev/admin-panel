@@ -3,17 +3,13 @@ import {useParams} from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {toAbsoluteUrl} from "../utils";
 import UserStatus from "./UserStatus";
+import UserImages from "./UserImages";
 
 const UserInfo = () => {
     const {id} = useParams();
     const axiosPrivate = useAxiosPrivate();
     const [user, setUser] = useState();
     const [error, setError] = useState();
-    const [images, setImages] = useState({
-        idCard: "",
-        selfie: "",
-        acceptForm: "",
-    })
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -37,11 +33,7 @@ const UserInfo = () => {
         }
     }, [])
 
-    useEffect(() => {
-        if (user?.attributes?.idCard?.[0]) getImages("idCard", user?.attributes?.idCard?.[0])
-        if (user?.attributes?.acceptForm?.[0]) getImages("acceptForm", user?.attributes?.acceptForm?.[0])
-        if (user?.attributes?.selfie?.[0]) getImages("selfie", user?.attributes?.selfie?.[0])
-    }, [user])
+
 
     const attrHandler = (attr) => {
         if (!user.attributes) {
@@ -53,23 +45,9 @@ const UserInfo = () => {
         return user.attributes[attr][0]
     }
 
-    const getImages = async (name, url) => {
-        await axiosPrivate.get(`/storage/admin/download${url}`, {
-                responseType: "arraybuffer"
-            }
-        ).then((res) => {
-            const blob = new Blob([res.data], { type: res.headers['content-type'] });
-            const imageUrl = URL.createObjectURL(blob);
-            setImages({
-                ...images,
-                [name]: imageUrl
-            })
-        })
-    }
-
     return (
         <div className="container">
-            <div className="card my-5">
+            <div className="card my-3">
                 <h5 className="card-header">User Information</h5>
                 <div className="card-body">
                     <div className="row mt-3">
@@ -82,8 +60,10 @@ const UserInfo = () => {
                         }
 
                         {isLoading ?
-                            <div className="spinner-border text-secondary" role="status">
-                                <span className="visually-hidden">Loading...</span>
+                            <div className="col-12 d-flex justify-content-center">
+                                <div className="spinner-border text-secondary text-center" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
                             </div> : <>
                                 <p className="d-flex col-6 justify-content-between">
                                     <span className="fw-bold">User id:</span><span>{user.id}</span>
@@ -125,10 +105,10 @@ const UserInfo = () => {
                                     <span className="fw-bold">Passport Number:</span><span>{attrHandler("passportNumber")}</span>
                                 </p>
                                 <p className="d-flex col-6 justify-content-between">
-                                    <span className="fw-bold">Birthday:</span><span>{attrHandler("birthday")}</span>
+                                    <span className="fw-bold">Birthday:</span><span>{attrHandler("birthdayG")}</span>
                                 </p>
                                 <p className="d-flex col-6 justify-content-between">
-                                    <span className="fw-bold">Birthday (Alt):</span><span>{attrHandler("birthdayAlt")}</span>
+                                    <span className="fw-bold">Birthday (Jalali):</span><span>{attrHandler("birthdayJ")}</span>
                                 </p>
                                 <p className="d-flex col-6 justify-content-between">
                                     <span className="fw-bold">Postal Code:</span><span>{attrHandler("postalCode")}</span>
@@ -146,7 +126,7 @@ const UserInfo = () => {
                                 </p>
                                 <p className="d-flex col-6 justify-content-between">
                                     <span className="fw-bold">Groups:</span><span>{user?.groups ? user.groups.map((group)=>
-                                    <span className="badge bg-primary mx-2" key={group.id}>{group.name}</span>) :"-" }</span>
+                                    <span className={`badge ${group.name === "kyc-requested" ? "bg-primary" : group.name === "kyc-rejected" ? "bg-danger" : "bg-success"} mx-2`} key={group.id}>{group.name.toUpperCase()}</span>) :"-" }</span>
                                 </p>
                                 <p className="d-flex col-12 justify-content-between">
                                     <span className="fw-bold">Address:</span><span>{attrHandler("address")}</span>
@@ -156,43 +136,9 @@ const UserInfo = () => {
                     </div>
                 </div>
             </div>
+            <UserImages attributes={user?.attributes}/>
             {
-                !isLoading && ( images?.acceptForm || images.selfie || images.idCard )?
-                    <div className="card">
-                        <h5 className="card-header p-2">User Documents</h5>
-                        <div className="card-body">
-                            <div className="row">
-                                {
-                                    images.acceptForm ?
-                                        <figure className="figure col-6">
-                                            <img src={images.acceptForm} className="figure-img img-fluid rounded" alt="User accept form"/>
-                                            <figcaption className="figure-caption">User accept form
-                                            </figcaption>
-                                        </figure> : ""
-                                }
-                                {
-                                    images.selfie ?
-                                        <figure className="figure col-6">
-                                            <img src={images.selfie} className="figure-img img-fluid rounded" alt="User accept form"/>
-                                            <figcaption className="figure-caption">User selfie image
-                                            </figcaption>
-                                        </figure> : ""
-                                }
-                                {
-                                    images.idCard ?
-                                        <figure className="figure col-6">
-                                            <img src={images.idCard} className="figure-img img-fluid rounded" alt="User accept form"/>
-                                            <figcaption className="figure-caption">User idCard
-                                            </figcaption>
-                                        </figure> : ""
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    : ""
-            }
-            {
-                !isLoading && user?.groups.filter((g)=> g.name === "kyc-requested").length > 0  ? <UserStatus id={user.id}/> :""
+                !isLoading  ? <UserStatus id={user.id} initialState={user?.groups[0]?.name}/> :""
             }
         </div>
     )

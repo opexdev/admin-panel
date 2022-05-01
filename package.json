@@ -1,6 +1,5 @@
 {
   "name": "opex-admin-panel",
-  "homepage" : "adminpanel",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

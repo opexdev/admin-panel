@@ -46,8 +46,10 @@ const WithdrawInfo = ({}) => {
                     }
 
                     {isLoading ?
-                        <div className="spinner-border text-secondary" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        <div className="col-12 d-flex justify-content-center">
+                            <div className="spinner-border text-secondary text-center" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
                         </div> : <>
                             <p className="d-flex col-6 justify-content-between">
                                 <span className="fw-bold">Withdraw id:</span><span>{withdraw.withdrawId}</span>

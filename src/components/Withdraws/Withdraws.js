@@ -22,7 +22,7 @@ const Withdraws = () => {
     }, [status])
 
     useEffect(() => {
-        let isMounted = true;
+        let isMounted = true
         const controller = new AbortController();
         setError(false)
         setIsLoading(true)
