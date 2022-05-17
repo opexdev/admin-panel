@@ -2,10 +2,10 @@ FROM node:lts-fermium AS build
 COPY . /admin-panel
 WORKDIR /admin-panel
 ENV NODE_ENV production
-RUN yarn install --immutable
+RUN npm install
 ARG GENERATE_SOURCEMAP='false'
 ENV GENERATE_SOURCEMAP $GENERATE_SOURCEMAP
-RUN yarn build
+RUN npm run build
 
 FROM nginx:1.20.2
 COPY default.conf /etc/nginx/conf.d
