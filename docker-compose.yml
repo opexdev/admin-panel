@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  admin-panel:
+    image: ghcr.io/opexdev/admin-panel
+    environment:
+      - DEFAULT_DIRECTION=$DEFAULT_DIRECTION
+      - BRAND_NAME=$BRAND_NAME
+      - API_BASE_URL=$API_BASE_URL
+      - FRONT_URL=$FRONT_URL
+      - CLIENT_ID=$CLIENT_ID
+      - CLIENT_SECRET=$CLIENT_SECRET
+    networks:
+      - default
+    deploy:
+      restart_policy:
+        condition: on-failure
+networks:
+  default:
+    driver: bridge
