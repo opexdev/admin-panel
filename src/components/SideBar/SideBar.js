@@ -11,7 +11,7 @@ const SideBar = ({closeMenu}) => {
             <img src={toAbsoluteUrl('/media/img/logo.svg')} alt="logo" className="logo"/>
             <div className="logo-text text-center">
                 <p className="text-center col">
-                    {process.env.REACT_APP_BRAND_NAME}
+                    {window.env.REACT_APP_BRAND_NAME}
                 </p>
             </div>
         </div>

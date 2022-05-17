@@ -46,13 +46,13 @@ const Users = () => {
     const impersonateLogin = async (user) => {
         const params =
             {
-                "clientId": process.env.REACT_APP_CLIENT_ID,
-                "clientSecret": process.env.REACT_APP_CLIENT_SECRET,
+                "clientId": window.env.REACT_APP_CLIENT_ID,
+                "clientSecret": window.env.REACT_APP_CLIENT_SECRET,
                 "userId": user
             }
         return await axiosPrivate.post('/admin/auth/v1/user/impersonate', params)
             .then((res) => {
-                return window.open(process.env.REACT_APP_FRONT_URL + "/login?token=" + res.data.access_token, '_blank');
+                return window.open(window.env.REACT_APP_FRONT_URL + "/login?token=" + res.data.access_token, '_blank');
             }).catch((e) => {
                 toast.error(e.response.data.message);
             })
