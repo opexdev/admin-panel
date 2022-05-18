@@ -5,6 +5,7 @@ import {toAbsoluteUrl} from "../utils";
 import moment from "moment/moment";
 import usePagination from "../../hooks/usePagination";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../Loading";
 
 const Withdraws = () => {
     const [error, setError] = useState();
@@ -50,36 +51,30 @@ const Withdraws = () => {
         }
     }, [status, paginate])
 
-    return <div className="container">
-        <div className="row mt-3">
-            <div className="col-12" onChange={(e) => setStatus(e.target.value)}>
-                <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="status" value="CREATED"
-                           defaultChecked={status === "CREATED"} id="CREATED"/>
-                    <label className="form-check-label" htmlFor="CREATED">CREATED</label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="status" value="DONE"
-                           defaultChecked={status === "DONE"} id="DONE"/>
-                    <label className="form-check-label" htmlFor="DONE">DONE</label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="status" value="REJECTED"
-                           defaultChecked={status === "REJECTED"} id="REJECTED"/>
-                    <label className="form-check-label" htmlFor="REJECTED">REJECTED</label>
-                </div>
+    return <div className="col-12  px-5 py-4 d-flex flex-column justify-content-between align-items-center">
+        <div className="d-flex justify-content-center align-items-center" style={{height:"12%" , width:"100%"}} onChange={(e) => setStatus(e.target.value)}>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input primary-bg" type="radio" name="status" value="CREATED"
+                       defaultChecked={status === "CREATED"} id="CREATED"/>
+                <label className="form-check-label" htmlFor="CREATED">Created</label>
             </div>
-            {error ?
-                <div className="alert alert-danger mt-3" role="alert">
-                    <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
-                    {error.toString()}
-                </div>
-                : ""
-            }
-            <table className="table table-striped col-12 ">
-                <thead>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input primary-bg" type="radio" name="status" value="DONE"
+                       defaultChecked={status === "DONE"} id="DONE"/>
+                <label className="form-check-label" htmlFor="DONE">Done</label>
+            </div>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input primary-bg" type="radio" name="status" value="REJECTED"
+                       defaultChecked={status === "REJECTED"} id="REJECTED"/>
+                <label className="form-check-label" htmlFor="REJECTED">Rejected</label>
+            </div>
+        </div>
+
+        <div className="d-flex flex-column justify-content-between align-items-center pb-5" style={{height:"88%", width:"100%"}}>
+            <table className="table table-bordered rounded text-center col-12 striped">
+                <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">Destination Network</th>
                     <th scope="col">Destination Currency</th>
                     <th scope="col">Amount</th>
@@ -95,39 +90,46 @@ const Withdraws = () => {
                 {
                     isLoading ?
                         <tr>
-                            <td colSpan="12" className="text-center">
-                                <div className="spinner-border text-secondary" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
+                            <td colSpan="12" className="text-center py-5" style={{height:"50vh"}}>
+                                <Loading/>
                             </td>
                         </tr>
                         : withdraws.withdraws?.length === 0 ? <tr>
-                            <td colSpan="12" className="text-center">No Withdraw Exist</td>
-                        </tr> :
-                        withdraws.withdraws?.map((withdraw, index) => <tr key={withdraw.withdrawId}>
-                            <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
-                            <td>{withdraw.destNetwork}</td>
-                            <td><img className="table-img"
-                                     src={toAbsoluteUrl("media/img/assets/" + withdraw.destCurrency + ".svg")} alt=""/>
-                            </td>
-                            <td>{withdraw.amount}</td>
-                            <td>{withdraw.acceptedFee}</td>
-                            <td>{withdraw.appliedFee}</td>
-                            <td>{withdraw.destNote}</td>
-                            <td>{moment(withdraw.createDate).format("YYYY/MM/DD hh:mm:ss")}</td>
-                            <td>{withdraw.status}</td>
-                            <td>
-                                <Link to={withdraw.withdrawId.toString()}>
-                                    <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.png")}
-                                         alt=""/>
-                                </Link>
-                            </td>
-                        </tr>)
+                                <td colSpan="12" className="text-center" style={{height:"50vh"}}>No Withdraw Exist</td>
+                            </tr> :
+                            withdraws.withdraws?.map((withdraw, index) => <tr key={withdraw.withdrawId}>
+                                <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
+                                <td>{withdraw.destNetwork}</td>
+                                <td><img className="table-img"
+                                         src={toAbsoluteUrl("media/img/assets/" + withdraw.destCurrency + ".svg")} alt=""/>
+                                </td>
+                                <td>{withdraw.amount}</td>
+                                <td>{withdraw.acceptedFee}</td>
+                                <td>{withdraw.appliedFee}</td>
+                                <td>{withdraw.destNote}</td>
+                                <td>{moment(withdraw.createDate).format("YYYY/MM/DD hh:mm:ss")}</td>
+                                <td>{withdraw.status}</td>
+                                <td>
+                                    <Link to={withdraw.withdrawId.toString()}>
+                                        <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
+                                             alt=""/>
+                                    </Link>
+                                </td>
+                            </tr>)
                 }
                 </tbody>
             </table>
+            {error ?
+                <div className="alert alert-danger mt-3" role="alert">
+                    <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
+                    {error.toString()}
+                </div>
+                : ""
+            }
             <Pagination maxPage={maxPage} paginate={paginate}/>
         </div>
+
+
     </div>
 }
 export default Withdraws;

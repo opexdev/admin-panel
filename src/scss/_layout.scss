@@ -2,11 +2,18 @@ body {
   background: #f7f7f7;
 }
 
+html, body {
+  font-family: 'Roboto Flex', iranyekan, serif;
+  color: #ecececc7 !important;
+}
+
+
 .login-form {
   padding: 5vh 10vw;
   @media all and (min-width: 768px) {
     padding: 25vh 2vw;
   }
+
   h1 {
     font-size: 1.7rem;
   }
@@ -26,12 +33,17 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  background: red !important;
+  z-index: 180000;
 }
 
 .sidebar {
   height: 100vh;
-  width: 220px;
+  width: 10%;
+  /*
   background: #0a2555;
+  */
+  background: #24242e;
   color: #f7f7f7;
   position: fixed;
   left: 0;
@@ -47,8 +59,13 @@ body {
 .content {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-left: 220px;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 90%;
+  height: 100vh;
+  background: greenyellow;
+
+  margin-left: 10%;
   transition: all 0.5s;
 }
 
@@ -62,32 +79,50 @@ body {
 }
 
 .top-bar {
-  background: white;
+  /*background: white;
   height: 50px;
+  display: flex;*/
+
+  background: rgba(36, 38, 51, 0.9803921568627451);
+  height: 9%;
+  width: 100%;
+  z-index: 2;
+  /*position: fixed;*/
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
   .close-menu {
     display: flex;
-    margin-top: 10px;
+    /* margin-top: 10px;*/
     font-size: 20px;
   }
 }
 
+
 .main {
   display: flex;
-  height: 95vh;
+
+  height: 91%;
+  width: 100%;
+  overflow-y: hidden;
+  background: #383a59;
 }
 
 .logo-wrapper {
-  padding: 1vw 1vw 0 1vw;
+
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
-  max-height: calc(6vh - 1vw);
+  /*max-height: calc(6vh - 1vw);
   background: white;
   padding: 3px;
-  border-radius: 6px;
+  border-radius: 6px;*/
+  width: 2.5vw;
 }
 
 .item-title {
@@ -182,7 +217,14 @@ body {
 }
 
 .side-menu li a.active {
-  background: #2e6ee7;
+  /*background: #2e6ee7;*/
+  color: #ff8124 !important;
+  background-color: #282a36;
+}
+
+.side-menu li a.active i {
+  /*background: #2e6ee7;*/
+  color: #ff8124;
 }
 
 .item-title {
@@ -206,6 +248,7 @@ body {
 .pointer {
   cursor: pointer;
 }
+
 .widget {
   text-align: center;
   background: white;
@@ -221,9 +264,228 @@ body {
     font-size: 47px;
     border-left: 1px #f7f7f7 solid;
   }
+
   .text p {
     font-size: 22px;
     font-weight: 500;
     margin-bottom: 0.5rem;
   }
+}
+
+table {
+  background: #282a36;
+  color: #ecececc7 !important;
+  border-color: rgba(36, 38, 51, 0.9803921568627451) !important;
+  border-radius: 5px !important;
+}
+
+table thead {
+  background: rgba(36, 38, 51, 0.9803921568627451);
+
+  border-radius: 5px;
+}
+
+table thead tr th {
+  border-color: rgba(36, 38, 51, 0.9803921568627451) !important;
+  border: none;
+
+  font-weight: 500 !important;
+}
+
+table tr th {
+  padding-top: 1.4rem !important;
+  padding-bottom: 1.4rem !important;
+  vertical-align: middle !important;
+}
+
+table tr td {
+
+  vertical-align: middle !important;
+}
+
+table thead tr {
+  /*border: none !important;*/
+}
+
+.table > :not(:first-child) {
+  border-top: none !important;
+}
+
+.striped tr:nth-child(even) td {
+  background-color: #38384678;
+  -webkit-transition: background-color 0.4s;
+  -o-transition: background-color 0.4s;
+  transition: background-color 0.4s;
+}
+
+.hide-scrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollBar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollView::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollView {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: 0 !important;
+}
+
+.primary-bg {
+  background: #242633;
+}
+
+.secondary-bg {
+  background: #282a36;
+}
+
+.inputGroup {
+  border: 0.005vh solid #242633;
+}
+
+.userInfoBox {
+  background: #21232e;
+  padding: 2vh 1vw;
+  border-radius: 5px;
+}
+
+.text-color {
+  color: #ecececc7
+}
+
+.input-group {
+  border: 1px solid #181a24;
+}
+
+.form-control:focus {
+  background-color: #282a36;
+  border: none;
+  color: #ecececc7 !important;
+}
+.form-control{
+  color: #ecececc7 !important;
+}
+
+.font-size-sm {
+  font-size: 0.75vw;
+}
+
+.font-size-sm-plus {
+  font-size: 0.8vw;
+}
+
+.font-size-md {
+  font-size: 1vw;
+}
+
+.font-size-md-01 {
+  font-size: 1.25vw;
+}
+
+.font-size-md-plus {
+  font-size: 1.35vw;
+}
+
+.font-size-lg {
+  font-size: 2.2vw;
+}
+
+.login-container {
+  background-color: #383a59;
+  background-repeat: repeat;
+  background-position: center center;
+  background-size: 600px 1200px;
+  width: 100vw;
+  height: 100vh;
+  animation-name: MOVE-BG;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /*overflow: hidden;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes MOVE-BG {
+  from {
+    background-position: center top;
+  }
+  to {
+    background-position: center 1200px;
+  }
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
+
+.login-content img {
+  width: 35vw;
+}
+
+.this-login-form {
+  width: 100%;
+  height: 35vh;
+  background-color: rgba(36, 38, 51, 0.9);
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2vh 2vw;
+}
+.login-input {
+  width: 100%;
+  height: 5.5vh;
+  /*background-color: #242633;*/
+  border: 1px solid #181a26;
+  border-radius: 5px;
+  margin: 1vh 0;
+
+}
+.login-input input {
+  all: unset;
+  background-color: rgba(46, 48, 70, 0.77);
+  height: 100%;
+  width: 70%;
+  border-radius: 0 5px 5px 0;
+  color: #ecececc7 !important;
+
+
+}
+.login-input span {
+  background-color: rgba(37, 40, 55, 0.82);
+  width: 30%;
+  border-radius: 5px 0 0 5px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.login-submit{
+
+}
+.login-submit button{
+  all: unset;
+  background: #50fa7ba1;
+  padding: 1vh 3vw;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-submit button:disabled{
+  background: rgba(46, 48, 70, 0.77);
+  cursor: not-allowed;
 }

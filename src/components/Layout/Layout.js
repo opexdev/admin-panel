@@ -11,7 +11,9 @@ const Layout = () => {
             <SideBar closeMenu={closeMenu}/>
             <div className={`content ${closeMenu ? "close" : "open"}`}>
                 <Topbar setCloseMenu={setCloseMenu}/>
-                <div className="main"><Outlet/></div>
+                <div className="main">
+                    <Outlet/>
+                </div>
                 <Toaster position="bottom-left" toastOptions={
                     {
                         style: {

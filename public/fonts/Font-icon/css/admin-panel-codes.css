@@ -1,0 +1,9 @@
+
+.icon-layers:before { content: '\0e80'; } /* '຀' */
+.icon-kycicon:before { content: '\e800'; } /* '' */
+.icon-home:before { content: '\e801'; } /* '' */
+.icon-users:before { content: '\e802'; } /* '' */
+.icon-kyc:before { content: '\e803'; } /* '' */
+.icon-withdra:before { content: '\e804'; } /* '' */
+.icon-layersm:before { content: '\e805'; } /* '' */
+.icon-user_groups:before { content: '\e806'; } /* '' */
