@@ -4,6 +4,7 @@ import AuthContext from "../../context/AuthProvider";
 import {login} from '../../api/api';
 import jwt_decode from "jwt-decode";
 import {useLocation, useNavigate} from 'react-router-dom';
+import Loading from "../Loading";
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -14,13 +15,14 @@ const Login = () => {
 
     const userRef = useRef();
 
+    const [loading , setLoading] = useState(false)
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const [errMsg, setErrMsg] = useState('');
 
     useEffect(() => {
-        userRef.current.focus();
+        /*userRef.current.focus();*/
     }, [])
 
     useEffect(() => {
@@ -33,6 +35,7 @@ const Login = () => {
             setErrMsg("Username and Password must filled!")
             return
         }
+        setLoading(true)
         setErrMsg("")
         try {
             const response = await login({ username, password })
@@ -57,11 +60,64 @@ const Login = () => {
                 setErrMsg('Login Failed');
             }
         }
+        setLoading(false)
     }
 
-    return <div className="container-fluid vh-100" >
-        <div className="row vh-100">
-            <div className="col-lg-8 col-md-6 login-background" style={{ backgroundImage: `url('${toAbsoluteUrl("/media/img/bg-02.jpg")}')`}} />
+    return (
+        <div className="login-container text-color" style={{ backgroundImage: `url('${toAbsoluteUrl("/media/img/spaceStar.png")}')`}}>
+
+
+            <div className="login-content text-center">
+                <div className="mb-5">
+                    <img src={toAbsoluteUrl("media/img/opexLogoPlus.svg")} className="mb-5" alt=""/>
+                    <h1 className="fw-bold mt-5">Welcome To Admin Panel</h1>
+                </div>
+
+
+                <form className="this-login-form mt-5" onSubmit={handleSubmit}>
+
+                    {
+                        loading ? <Loading/> : <>
+                            <div className="d-flex flex-column justify-content-center align-items-center" style={{width:"75%"}}>
+                                <div className="d-flex flex-row login-input">
+                                    <span className="">Username</span>
+                                    <input className="" onChange={(e) => setUsername(e.target.value)}
+                                           ref={userRef} type="text"/>
+                                </div>
+                                <div className="d-flex flex-row login-input">
+                                    <span className="">Password</span>
+                                    <input className="" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                                </div>
+
+                                { errMsg && <div className="d-flex justify-content-start align-items-center mt-2" style={{width:"100%"}}>
+                                    <span className="text-danger">{errMsg}</span>
+                                </div>}
+                            </div>
+                            <div className="login-submit">
+                                <button type="submit" className="text-color" disabled={!username || !password}>
+                                    Submit
+                                </button>
+                            </div>
+                        </>
+                    }
+
+
+
+
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+        {/*<div className="row vh-100">
+            <div className="col-lg-8 col-md-6" />
+
             <div className="col-lg-4 col-md-6 login-form">
                 <h1 className="text-center">
                     Login to {process.env.REACT_APP_BRAND_NAME} admin
@@ -97,7 +153,10 @@ const Login = () => {
                     </div>
                 </form>
             </div>
-        </div>
+
+        </div>*/}
+
     </div>
+    )
 }
 export default Login;

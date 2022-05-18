@@ -5,6 +5,7 @@ import {toAbsoluteUrl} from "../utils";
 import {toast} from "react-hot-toast";
 import Pagination from "../Pagination/Pagination";
 import usePagination from "../../hooks/usePagination";
+import Loading from "../Loading";
 
 const Users = () => {
     const [error, setError] = useState();
@@ -58,25 +59,17 @@ const Users = () => {
             })
     }
 
-    return <div className="container">
-        <div className="row mt-3">
-            {error ?
-                <div className="alert alert-danger mt-3" role="alert">
-                    <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
-                    {error.toString()}
-                </div>
-                : ""
-            }
-            <table className="table table-striped col-12 ">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Username</th>
+    return <div className="col-12 d-flex flex-column justify-content-between align-items-center p-5">
+            <table className="table table-bordered rounded text-center col-12 striped">
+                <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
+                <tr className="">
+                    <th scope="col my-1" style={{width:"4%"}}></th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">isEnabled</th>
-                    <th scope="col">isEmailVerified</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Enable</th>
+                    <th scope="col">Email Verified</th>
                     <th scope="col">Login as user</th>
                     <th scope="col">Detail</th>
                 </tr>
@@ -85,34 +78,32 @@ const Users = () => {
                 {
                     isLoading ?
                         <tr>
-                            <td colSpan="12" className="text-center">
-                                <div className="spinner-border text-secondary" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
+                            <td colSpan="12" className="text-center py-5" style={{height:"50vh"}}>
+                                <Loading/>
                             </td>
                         </tr>
                         : users?.users?.length === 0 ?
-                        <tr><td colSpan="12" className="text-center">No User Exist</td></tr>:
+                        <tr><td colSpan="12" className="text-center" style={{height:"50vh"}}>No User Exist</td></tr>:
                         users?.users.map((user, index) => <tr key={user.id}>
                             <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
-                            <td>{user.username}</td>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
                             <td>{user.email}</td>
+                            <td>{user.id}</td>
                             <td>
                                 <img className="table-img"
-                                     src={user.isEnabled ? toAbsoluteUrl("media/img/check.png") : toAbsoluteUrl("media/img/remove.png")}
+                                     src={user.isEnabled ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
                                      alt=""/></td>
                             <td>
                                 <img className="table-img"
-                                     src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.png") : toAbsoluteUrl("media/img/remove.png")}
+                                     src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
                                      alt=""/></td>
                             <td>
                                 <img className="table-img pointer" onClick={() => impersonateLogin(user.id)}
-                                     src={toAbsoluteUrl("media/img/double-chevron.png")} alt=""/></td>
+                                     src={toAbsoluteUrl("media/img/double-arrow.svg")} alt=""/></td>
                             <td>
                                 <Link to={user.id}>
-                                    <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.png")}
+                                    <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
                                          alt=""/>
                                 </Link>
                             </td>
@@ -120,8 +111,15 @@ const Users = () => {
                 }
                 </tbody>
             </table>
+        {error ?
+            <div className="alert alert-danger" role="alert">
+                <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
+                {error.toString()}
+            </div>
+            : ""
+        }
             <Pagination maxPage={maxPage} paginate={paginate}/>
-        </div>
+
     </div>
 }
 

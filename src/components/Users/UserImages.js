@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import Loading from "../Loading";
 
 const UserImages = ({attributes}) => {
 
@@ -20,13 +21,16 @@ const UserImages = ({attributes}) => {
     }
 
     useEffect(() => {
+
         if (attributes?.idCardPath?.[0]) {
             getImages(attributes?.idCardPath?.[0]).then((res) => setIdCardPath(createBlob(res)))
         }
 
         if (attributes?.acceptFormPath?.[0]) {
             getImages(attributes?.acceptFormPath?.[0]).then((res) => setAcceptFormPath(createBlob(res)))
-        }
+        } /*else {
+            setAcceptFormPath("Photo not uploaded")
+        }*/
 
         if (attributes?.selfiePath?.[0]) {
             getImages(attributes?.selfiePath?.[0]).then((res) => setSelfiePath(createBlob(res)))
@@ -34,45 +38,55 @@ const UserImages = ({attributes}) => {
 
     }, [attributes])
 
-    return <div className="card">
-        <h5 className="card-header p-2">User Documents</h5>
-        <div className="card-body">
-            <div className="row">
-                {
-                    !attributes ? <div className="col-12 d-flex justify-content-center">
-                        <div className="spinner-border text-secondary text-center" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div> : ""
-                }
-                {
-                    acceptFormPath ?
-                        <figure className="figure col-4">
-                            <img src={acceptFormPath} className="figure-img img-fluid rounded"
-                                 alt="User accept form"/>
-                            <figcaption className="figure-caption">User accept form
-                            </figcaption>
-                        </figure> : ""
-                }
-                {
-                    selfiePath ?
-                        <figure className="figure col-4">
-                            <img src={selfiePath} className="figure-img img-fluid rounded" alt="User accept form"/>
-                            <figcaption className="figure-caption">User selfie image
-                            </figcaption>
-                        </figure> : ""
-                }
-                {
-                    idCardPath?
-                        <figure className="figure col-4">
-                            <img src={idCardPath} className="figure-img img-fluid rounded" alt="User accept form"/>
-                            <figcaption className="figure-caption">User idCard
-                            </figcaption>
-                        </figure> : ""
-                }
-            </div>
+    const content = () => {
+
+    /*  if (!attributes && (!attributes?.idCardPath?.[0] || !attributes?.acceptFormPath?.[0] || !idCardPath)) {
+          return <div className="col-12 d-flex justify-content-center align-items-center card mt-4" style={{height:"50vh"}}>Photo not uploaded</div>
+      }
+      if (!attributes) {
+          return <div className="col-12 d-flex justify-content-center align-items-center mt-4" style={{height:"50vh"}}><Loading/></div>
+      }*/
+
+      return <div className="d-flex flex-row col-12">
+
+          {acceptFormPath !== "Photo not uploaded" ?
+
+          <div className="col-4 d-flex flex-column pe-2" style={{height:"60vh"}}>
+              <div className="secondary-bg rounded-top d-flex justify-content-center align-items-center" style={{height:"90%"}}>
+                  {acceptFormPath ? <img src={acceptFormPath} alt="" style={{width:"100%" , height:"100%"}}/> : attributes ? <Loading/> : <span>Photo not uploaded</span> }
+              </div>
+              <div className="primary-bg rounded-bottom text-white d-flex justify-content-center align-items-center" style={{height:"10%"}}>
+                  <span style={{fontSize:"1.15rem"}}>Accept form</span>
+              </div>
+          </div>
+               : "" }
+          <div className="col-4 d-flex flex-column px-2" style={{height:"60vh"}}>
+              <div className="secondary-bg rounded-top d-flex justify-content-center align-items-center" style={{height:"90%"}}>
+                  {selfiePath ? <img src={selfiePath} alt="" style={{width:"100%" , height:"100%"}}/> : attributes ? <Loading/> : <span>Photo not uploaded</span> }
+              </div>
+              <div className="primary-bg rounded-bottom text-white d-flex justify-content-center align-items-center" style={{height:"10%"}}>
+                  <span style={{fontSize:"1.15rem"}}>Selfie</span>
+              </div>
+          </div>
+          <div className="col-4 d-flex flex-column ps-2" style={{height:"60vh"}}>
+              <div className="secondary-bg rounded-top d-flex justify-content-center align-items-center" style={{height:"90%"}}>
+                  {idCardPath ? <img src={idCardPath} alt="" style={{width:"100%" , height:"100%"}}/> : attributes ? <Loading/> : <span>Photo not uploaded</span> }
+              </div>
+              <div className="primary-bg rounded-bottom text-white d-flex justify-content-center align-items-center" style={{height:"10%"}}>
+                  <span style={{fontSize:"1.15rem"}}>IDcard</span>
+              </div>
+          </div>
+
+
+
+      </div>
+
+    }
+
+    return <div className="col-12 userInfoBox my-5">
+            <h4 className="py-3 primary-bg rounded d-flex justify-content-center align-items-center">User Documents</h4>
+            {content()}
         </div>
-    </div>
 }
 
 export default UserImages

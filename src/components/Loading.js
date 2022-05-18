@@ -1,9 +1,8 @@
 import React from "react";
+import {toAbsoluteUrl} from "./utils";
 
 const Loading = () => {
-    return <div className="spinner-border text-secondary" role="status">
-        <span className="visually-hidden">Loading...</span>
-    </div>
+    return <img src={toAbsoluteUrl("/media/img/lineLoading.gif")} alt="" style={{width:"6rem"}}/>
 }
 
 export default Loading
