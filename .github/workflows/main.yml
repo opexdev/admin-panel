@@ -1,4 +1,4 @@
-name: Deploy Admin Panel - Demo
+name: Push images on main branch update
 
 on:
   push:
