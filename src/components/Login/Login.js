@@ -63,13 +63,18 @@ const Login = () => {
         setLoading(false)
     }
 
+    const fill = () => {
+        setUsername("Finance@opex.dev")
+        setPassword("opexadmin")
+    }
+
     return (
         <div className="login-container text-color" style={{ backgroundImage: `url('${toAbsoluteUrl("/media/img/spaceStar.png")}')`}}>
 
 
             <div className="login-content text-center">
                 <div className="mb-5">
-                    <img src={toAbsoluteUrl("media/img/opexLogoPlus.svg")} className="mb-5" alt=""/>
+                    <img src={toAbsoluteUrl("media/img/opexLogoPlus.svg")} className="mb-5" alt="" onDoubleClick={fill}/>
                     <h1 className="fw-bold mt-5">Welcome To Admin Panel</h1>
                 </div>
 
@@ -81,12 +86,12 @@ const Login = () => {
                             <div className="d-flex flex-column justify-content-center align-items-center" style={{width:"75%"}}>
                                 <div className="d-flex flex-row login-input">
                                     <span className="">Username</span>
-                                    <input className="" onChange={(e) => setUsername(e.target.value)}
+                                    <input className="" value={username} onChange={(e) => setUsername(e.target.value)}
                                            ref={userRef} type="text"/>
                                 </div>
                                 <div className="d-flex flex-row login-input">
                                     <span className="">Password</span>
-                                    <input className="" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                                    <input className="" value={password} type="password" onChange={(e) => setPassword(e.target.value)}/>
                                 </div>
 
                                 { errMsg && <div className="d-flex justify-content-start align-items-center mt-2" style={{width:"100%"}}>

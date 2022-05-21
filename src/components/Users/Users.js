@@ -31,8 +31,9 @@ const Users = () => {
                 signal: controller.signal
             }).then((res) => {
                 isMounted && setUsers(res.data);
+
             }).catch((err) => {
-                setError(err);
+                setError(err)
             }).finally(() => setIsLoading(false));
         }
         getUser()
@@ -53,13 +54,13 @@ const Users = () => {
             }
         return await axiosPrivate.post('/admin/auth/v1/user/impersonate', params)
             .then((res) => {
-                return window.open(window.env.REACT_APP_FRONT_URL + "/login?token=" + res.data.access_token, '_blank');
+                return window.open(window.env.REACT_APP_FRONT_URL + "/login?impersonate=" + res.data.access_token, '_blank');
             }).catch((e) => {
                 toast.error(e.response.data.message);
             })
     }
 
-    return <div className="col-12 d-flex flex-column justify-content-between align-items-center p-5">
+    return <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5 py-5">
             <table className="table table-bordered rounded text-center col-12 striped">
                 <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                 <tr className="">

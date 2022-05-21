@@ -61,7 +61,7 @@ const KycUsers = () => {
             })
     }
 
-    return <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5 py-4">
+    return <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5 py-5">
         <div className="d-flex justify-content-center align-items-center" style={{height:"12%" , width:"100%"}} onChange={(e) => setStatus(e.target.value)}>
 
                 <div className="form-check form-check-inline">
@@ -90,7 +90,7 @@ const KycUsers = () => {
                 </div>
 
         </div>
-        <div className="d-flex flex-column justify-content-between align-items-center pb-5" style={{height:"88%", width:"100%"}}>
+        <div className="d-flex flex-column justify-content-between align-items-center" style={{height:"88%", width:"100%"}}>
             <table className="table table-bordered rounded text-center col-12 striped">
                 <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                 <tr>
@@ -142,7 +142,7 @@ const KycUsers = () => {
                 </tbody>
             </table>
             {error ?
-                <div className="alert alert-danger mt-3" role="alert">
+                <div className="alert alert-danger" role="alert">
                     <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
                     {error.toString()}
                 </div>
