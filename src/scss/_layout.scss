@@ -368,7 +368,8 @@ table thead tr {
   border: none;
   color: #ecececc7 !important;
 }
-.form-control{
+
+.form-control {
   color: #ecececc7 !important;
 }
 
@@ -446,6 +447,7 @@ table thead tr {
   align-items: center;
   padding: 2vh 2vw;
 }
+
 .login-input {
   width: 100%;
   height: 5.5vh;
@@ -455,6 +457,7 @@ table thead tr {
   margin: 1vh 0;
 
 }
+
 .login-input input {
   all: unset;
   background-color: rgba(46, 48, 70, 0.77);
@@ -465,6 +468,7 @@ table thead tr {
 
 
 }
+
 .login-input span {
   background-color: rgba(37, 40, 55, 0.82);
   width: 30%;
@@ -475,17 +479,29 @@ table thead tr {
   align-items: center;
 
 }
-.login-submit{
+
+.login-submit {
 
 }
-.login-submit button{
+
+.login-submit button {
   all: unset;
   background: #50fa7ba1;
   padding: 1vh 3vw;
   border-radius: 5px;
   cursor: pointer;
 }
-.login-submit button:disabled{
+
+.login-submit button:disabled {
   background: rgba(46, 48, 70, 0.77);
   cursor: not-allowed;
 }
+
+button:disabled {
+  background: rgba(46, 48, 70, 0.77)!important;
+  cursor: not-allowed !important;
+  border: none !important;
+
+
+}
+

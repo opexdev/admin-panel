@@ -115,12 +115,23 @@ const UserInfo = () => {
                     </span>
                             </div>
                             <div className="d-flex flex-row rounded my-3 inputGroup">
-                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Birthday G</span>
+                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Birthday (Gregorian)</span>
                                 <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{attrHandler("birthdayG")}</span>
                                 <span className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover" style={{cursor:"pointer"}} onClick={() => copyToClipboard(user?.attributes["birthdayG"][0])}>
                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
                     </span>
                             </div>
+
+                            <div className="d-flex flex-row rounded my-3 inputGroup">
+                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Birthday (Jalali)</span>
+                                <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{attrHandler("birthdayJ")}</span>
+                                <span className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover" style={{cursor:"pointer"}} onClick={() => copyToClipboard(user?.attributes["birthdayJ"][0])}>
+                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
+                    </span>
+                            </div>
+
+
+
                             <div className="d-flex flex-row rounded my-3 inputGroup">
                                 <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Postal Code</span>
                                 <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{attrHandler("postalCode")}</span>
@@ -135,10 +146,7 @@ const UserInfo = () => {
                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
                     </span>
                             </div>
-                            <div className="d-flex flex-row rounded my-3 inputGroup">
-                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Groups</span>
-                                <span className="col-9 secondary-bg p-3 d-flex justify-content-center align-items-center">{user?.groups ? user.groups.map((group)=> <span className={`badge ${group.name === "kyc-requested" ? "bg-primary" : (group.name === "kyc-rejected" || group.name === "kyc-blocked") ? "bg-danger" : "bg-success"} mx-2 py-2`} key={group.id}>{group.name.toUpperCase()}</span>) :"-" }</span>
-                            </div>
+
                         </div>
                         <div className="col-6 ps-3">
                             <div className="d-flex flex-row rounded my-3 inputGroup">
@@ -148,13 +156,11 @@ const UserInfo = () => {
                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
                     </span>
                             </div>
-                            <div className="d-flex flex-row rounded my-3 inputGroup">
-                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">birthday J</span>
-                                <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{attrHandler("birthdayJ")}</span>
-                                <span className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover" style={{cursor:"pointer"}} onClick={() => copyToClipboard(user?.attributes["birthdayJ"][0])}>
-                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
-                    </span>
-                            </div>
+
+
+
+
+
                             <div className="d-flex flex-row rounded my-3 inputGroup">
                                 <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Nationality</span>
                                 <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{attrHandler("nationality")}</span>
@@ -194,6 +200,10 @@ const UserInfo = () => {
                             <div className="d-flex flex-row rounded my-3 inputGroup">
                                 <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Required Actions</span>
                                 <span className="col-9 secondary-bg p-3 d-flex justify-content-center align-items-center">{user?.requiredActions.length > 0 ? user?.requiredActions.map((action)=> <span className="badge bg-warning text-dark mx-2 py-2" key={action}>{action}</span>) :"-" }</span>
+                            </div>
+                            <div className="d-flex flex-row rounded my-3 inputGroup">
+                                <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Groups</span>
+                                <span className="col-9 secondary-bg p-3 d-flex justify-content-center align-items-center">{user?.groups.length ? user.groups.map((group)=> <span className={`badge ${group.name === "kyc-requested" ? "bg-primary" : (group.name === "kyc-rejected" || group.name === "kyc-blocked") ? "bg-danger" : "bg-success"} mx-2 py-2`} key={group.id}>{group.name.toUpperCase()}</span>) :"-" }</span>
                             </div>
                         </div>
                     </div>

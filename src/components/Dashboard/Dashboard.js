@@ -59,7 +59,7 @@ const Dashboard = () => {
 
         <div className="mb-5 d-flex flex-column justify-content-center align-items-center">
             <img src={toAbsoluteUrl("media/img/opexLogoPlus.svg")} style={{width:"25vw"}} className="mb-5" alt=""/>
-            <h1 className="fw-bold mt-1">Admin Panel</h1>
+            <h1 className="fw-bold mt-1" style={{fontFamily: 'Roboto Flex'}}>Admin Panel</h1>
         </div>
 
 

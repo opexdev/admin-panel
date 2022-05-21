@@ -51,7 +51,7 @@ const Withdraws = () => {
         }
     }, [status, paginate])
 
-    return <div className="col-12  px-5 py-4 d-flex flex-column justify-content-between align-items-center">
+    return <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5 py-5">
         <div className="d-flex justify-content-center align-items-center" style={{height:"12%" , width:"100%"}} onChange={(e) => setStatus(e.target.value)}>
             <div className="form-check form-check-inline">
                 <input className="form-check-input primary-bg" type="radio" name="status" value="CREATED"
@@ -70,7 +70,7 @@ const Withdraws = () => {
             </div>
         </div>
 
-        <div className="d-flex flex-column justify-content-between align-items-center pb-5" style={{height:"88%", width:"100%"}}>
+        <div className="d-flex flex-column justify-content-between align-items-center" style={{height:"88%", width:"100%"}}>
             <table className="table table-bordered rounded text-center col-12 striped">
                 <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                 <tr>
@@ -103,7 +103,7 @@ const Withdraws = () => {
                                 <td><img className="table-img"
                                          src={toAbsoluteUrl("media/img/assets/" + withdraw.destCurrency + ".svg")} alt=""/>
                                 </td>
-                                <td>{withdraw.amount}</td>
+                                <td>{withdraw.amount.toLocaleString()}</td>
                                 <td>{withdraw.acceptedFee}</td>
                                 <td>{withdraw.appliedFee}</td>
                                 <td>{withdraw.destNote}</td>
@@ -120,7 +120,7 @@ const Withdraws = () => {
                 </tbody>
             </table>
             {error ?
-                <div className="alert alert-danger mt-3" role="alert">
+                <div className="alert alert-danger" role="alert">
                     <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
                     {error.toString()}
                 </div>

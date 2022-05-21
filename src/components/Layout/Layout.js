@@ -18,10 +18,27 @@ const Layout = () => {
                     {
                         style: {
                             padding: "0.3vh 0.8vw 0.3vh 0",
+                            color: "white",
                             lineHeight: "3vh",
                             fontSize: "0.8vw",
                             borderRadius: "4px",
-                        }
+                            background: "#383a59",
+                        },
+                        success: {
+                            style: {
+                                background: "#18a979",
+                            },
+                        },
+                        error: {
+                            style: {
+                                background: "#d73e36",
+                            },
+                        },
+                        custom: {
+                            style: {
+                                background: "#ff8124",
+                            },
+                        },
                     }
                 }/>
             </div>
