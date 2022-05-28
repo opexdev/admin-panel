@@ -6,6 +6,7 @@ import {toast} from "react-hot-toast";
 import Pagination from "../Pagination/Pagination";
 import usePagination from "../../hooks/usePagination";
 import Loading from "../Loading";
+import ScrollBar from "../ScrollBar";
 
 const Users = () => {
     const [error, setError] = useState();
@@ -61,10 +62,11 @@ const Users = () => {
     }
 
     return <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5 py-5">
+        <ScrollBar>
             <table className="table table-bordered rounded text-center col-12 striped">
                 <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                 <tr className="">
-                    <th scope="col my-1" style={{width:"4%"}}></th>
+                    <th scope="col my-1" style={{width: "4%"}}></th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
@@ -79,39 +81,42 @@ const Users = () => {
                 {
                     isLoading ?
                         <tr>
-                            <td colSpan="12" className="text-center py-5" style={{height:"50vh"}}>
+                            <td colSpan="12" className="text-center py-5" style={{height: "50vh"}}>
                                 <Loading/>
                             </td>
                         </tr>
                         : users?.users?.length === 0 ?
-                        <tr><td colSpan="12" className="text-center" style={{height:"50vh"}}>No User Exist</td></tr>:
-                        users?.users.map((user, index) => <tr key={user.id}>
-                            <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
-                            <td>{user.firstName}</td>
-                            <td>{user.lastName}</td>
-                            <td>{user.email}</td>
-                            <td>{user.id}</td>
-                            <td>
-                                <img className="table-img"
-                                     src={user.isEnabled ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
-                                     alt=""/></td>
-                            <td>
-                                <img className="table-img"
-                                     src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
-                                     alt=""/></td>
-                            <td>
-                                <img className="table-img pointer" onClick={() => impersonateLogin(user.id)}
-                                     src={toAbsoluteUrl("media/img/double-arrow.svg")} alt=""/></td>
-                            <td>
-                                <Link to={user.id}>
-                                    <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
-                                         alt=""/>
-                                </Link>
-                            </td>
-                        </tr>)
+                            <tr>
+                                <td colSpan="12" className="text-center" style={{height: "50vh"}}>No User Exist</td>
+                            </tr> :
+                            users?.users.map((user, index) => <tr key={user.id}>
+                                <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                                <td>{user.email}</td>
+                                <td>{user.id}</td>
+                                <td>
+                                    <img className="table-img"
+                                         src={user.isEnabled ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
+                                         alt=""/></td>
+                                <td>
+                                    <img className="table-img"
+                                         src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
+                                         alt=""/></td>
+                                <td>
+                                    <img className="table-img pointer" onClick={() => impersonateLogin(user.id)}
+                                         src={toAbsoluteUrl("media/img/double-arrow.svg")} alt=""/></td>
+                                <td>
+                                    <Link to={user.id}>
+                                        <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
+                                             alt=""/>
+                                    </Link>
+                                </td>
+                            </tr>)
                 }
                 </tbody>
             </table>
+        </ScrollBar>
         {error ?
             <div className="alert alert-danger" role="alert">
                 <i className="fa fa-exclamation-triangle mx-2" aria-hidden="true"/>
@@ -119,8 +124,9 @@ const Users = () => {
             </div>
             : ""
         }
+        <div className="mt-5">
             <Pagination maxPage={maxPage} paginate={paginate}/>
-
+        </div>
     </div>
 }
 

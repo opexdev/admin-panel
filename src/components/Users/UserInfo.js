@@ -227,7 +227,7 @@ const UserInfo = () => {
             {
                 !isLoading ? <UserStatus id={user.id} initialState={user?.groups[0]?.name}>
 
-                    { !user?.attributes && <div className="text-danger secondary-bg card text-center py-5">This user has not entered any information</div> }
+                    { !user?.attributes && <div className="text-danger text-center py-5">User has no information</div> }
 
                     </UserStatus>
                     :""

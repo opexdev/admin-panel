@@ -12,10 +12,10 @@
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
     <a href="https://github.com/opexdev/OPEX-Admin-Panel">
-    <img src="https://img.shields.io/github/last-commit/opexdev/OPEX-Admin-Panel" alt="Last commit">
+    <img src="https://img.shields.io/github/last-commit/opexdev/admin-panel" alt="Last commit">
   </a>
   <a href="https://github.com/opexdev/OPEX-Web-APP/issues" target="blank">
-	<img src="https://img.shields.io/github/issues/opexdev/OPEX-Admin-Panel" alt="github-profile-readme-generator issues"/>
+	<img src="https://img.shields.io/github/issues/opexdev/admin-panel" alt="github-profile-readme-generator issues"/>
 </a>
 </p>
 
