@@ -5,6 +5,11 @@ body {
 html, body {
   font-family: 'Roboto Flex', iranyekan, serif;
   color: #ecececc7 !important;
+
+}
+
+h4{
+  font-size: 1vw !important;
 }
 
 
@@ -33,16 +38,12 @@ html, body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  background: red !important;
   z-index: 180000;
 }
 
 .sidebar {
   height: 100vh;
-  width: 10%;
-  /*
-  background: #0a2555;
-  */
+  width: 13%;
   background: #24242e;
   color: #f7f7f7;
   position: fixed;
@@ -61,11 +62,9 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  width: 90%;
+  width: 87%;
   height: 100vh;
-  background: greenyellow;
-
-  margin-left: 10%;
+  margin-left: 13%;
   transition: all 0.5s;
 }
 
