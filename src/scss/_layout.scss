@@ -5,13 +5,11 @@ body {
 html, body {
   font-family: 'Roboto Flex', iranyekan, serif;
   color: #ecececc7 !important;
-
 }
 
-h4{
+h4 {
   font-size: 1vw !important;
 }
-
 
 .login-form {
   padding: 5vh 10vw;
@@ -301,13 +299,11 @@ table thead tr th {
 }
 
 table tr th {
-  padding-top: 1.4rem !important;
-  padding-bottom: 1.4rem !important;
-  vertical-align: middle !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 
-table tr td {
-
+th, td {
   vertical-align: middle !important;
 }
 
@@ -488,10 +484,6 @@ table thead tr {
 
 }
 
-.login-submit {
-
-}
-
 .login-submit button {
   all: unset;
   background: #50fa7ba1;
@@ -506,10 +498,7 @@ table thead tr {
 }
 
 button:disabled {
-  background: rgba(46, 48, 70, 0.77)!important;
+  background: rgba(46, 48, 70, 0.77) !important;
   cursor: not-allowed !important;
   border: none !important;
-
-
 }
-

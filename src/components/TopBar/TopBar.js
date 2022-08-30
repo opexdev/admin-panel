@@ -4,14 +4,10 @@ import useLogout from "../../hooks/useLogout";
 import Title from "./Title/Title";
 
 
-const TopBar = ({setCloseMenu}) => {
+const TopBar = () => {
 
     const logout = useLogout();
-
     return <div className="top-bar d-flex justify-content-between px-5">
-        {/*<div className="close-menu" onClick={() => setCloseMenu(prev => !prev)}>
-                <i className="fa-solid fa-bars"/>
-            </div>*/}
         <h4 className="">
             <Title/>
         </h4>
