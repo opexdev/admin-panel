@@ -1,12 +1,9 @@
 import {toAbsoluteUrl} from "../utils";
 import {NavLink} from "react-router-dom";
 import * as Routes from "../../routes/routes";
-import useLogout from "../../hooks/useLogout";
 import Icon from "../Icon/Icon";
 
 const SideBar = ({closeMenu}) => {
-    const logout = useLogout();
-
     return <div className={`sidebar text-color ${closeMenu ? "close" : "open"}`}>
 
         <div className="d-flex justify-content-center align-items-center py-5">

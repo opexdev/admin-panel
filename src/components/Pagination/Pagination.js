@@ -1,8 +1,8 @@
 import React from "react";
 import {useSearchParams} from "react-router-dom";
 
-const Pagination = ({paginate, maxPage}) => {
-
+const Pagination = ({paginate, total}) => {
+    const maxPage = Math.ceil(total / paginate?.perPage)
     const [searchParams, setSearchParams] = useSearchParams();
     const params = Object.fromEntries([...searchParams])
     const items = maxPage > 0 ? [...Array(maxPage > 3 ? 3 : maxPage).keys()] : [];
@@ -23,7 +23,7 @@ const Pagination = ({paginate, maxPage}) => {
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
-                <li className={`page-item ${paginate.page === 1 ? "disabled" : ""}`}>
+                <li className={`page-item ${paginate.page === 1 || maxPage === 0 ? "disabled" : ""}`}>
                     <button className="page-link" onClick={pervPage}>Previous</button>
                 </li>
                 {
@@ -47,7 +47,6 @@ const Pagination = ({paginate, maxPage}) => {
                         </>
                         : ""
                 }
-
 
                 <li className={`page-item ${maxPage < 2 || paginate.page === maxPage ? "disabled" : ""}`}>
                     <button className="page-link" onClick={nextPage}>Next</button>
