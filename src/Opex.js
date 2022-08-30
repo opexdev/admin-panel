@@ -1,44 +1,66 @@
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
-import Login from './components/Login/Login';
+import Login from './pages/Login/Login';
 import Missing from './components/Missing/Missing';
 import Layout from './components/Layout/Layout';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import Unauthorized from './components/Unauthorized/Unauthorized';
 import * as RoutesName from "../src/routes/routes";
-import Users from "./components/Users/Users";
-import UserInfo from "./components/Users/UserInfo";
-import Withdraws from "./components/Withdraws/Withdraws";
+import Users from "./pages/Users/Users";
+import UserInfo from "./pages/Users/UserInfo";
+import Withdraws from "./pages/Withdraws/Withdraws";
 import {useEffect, useState} from "react";
-import useRefreshToken from "./hooks/useRefreshToken";
-import WithdrawInfo from "./components/Withdraws/WithdrawInfo";
-import KycUsers from "./components/KycUsers/KycUsers";
+import WithdrawInfo from "./pages/Withdraws/WithdrawInfo";
+import KycUsers from "./pages/KycUsers/KycUsers";
+import useAuth from "./hooks/useAuth";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import {getTokenByRefreshToken} from "js-api-client";
+import setupAxios from "./setupAxios";
 
 function Opex() {
+    const {auth, setAuth} = useAuth();
+    setupAxios(axios, auth, setAuth)
     const [isLoading, setIsLoading] = useState(true);
-    const refresh = useRefreshToken();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const ROLES = {
-        admin: "finance-admin"
-    }
+    const ROLES = {admin: "admin_finance"}
 
     useEffect(() => {
-        refresh()
-            .then(() => location.pathname === RoutesName.login ? navigate("/", {replace: true}):null)
-            .catch(() => navigate(RoutesName.login, {replace: true})).finally(() => setIsLoading(false))
+        let refreshToken = auth.refreshToken || localStorage.getItem("adminRefreshToken")
+        if (refreshToken) {
+            getTokenByRefreshToken(refreshToken)
+                .then(async (response) => {
+                    refreshToken = response?.data?.refresh_token;
+                    const accessToken = response?.data?.access_token;
+                    const session = response?.data?.session_state;
+                    const {roles} = jwt_decode(accessToken);
+                    localStorage.setItem("refreshToken", refreshToken)
+                    setAuth(prev => {
+                        return {
+                            ...prev,
+                            refreshToken,
+                            accessToken,
+                            session,
+                            roles
+                        }
+                    });
+                    if (location.pathname === RoutesName.login) navigate("/")
+                })
+                .catch(() => navigate(RoutesName.login, {replace: true}))
+                .finally(() => setIsLoading(false));
+        } else {
+            setIsLoading(false)
+        }
     }, [])
 
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
+    if (isLoading) return <p className="text-dark">Loading...</p>
 
     return (
         <Routes>
             {/* public routes */}
             <Route path={RoutesName.login} element={<Login/>}/>
-
             <Route element={<Layout/>}>
                 <Route path="/" element={<Dashboard/>}/>
                 {/* private routes */}

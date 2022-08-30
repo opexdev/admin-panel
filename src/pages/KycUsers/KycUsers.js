@@ -1,61 +1,25 @@
-import React, {useEffect, useState} from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {toAbsoluteUrl} from "../utils";
-import Pagination from "../Pagination/Pagination";
+import {toAbsoluteUrl} from "../../components/utils";
+import Pagination from "../../components/Pagination/Pagination";
 import usePagination from "../../hooks/usePagination";
 import {users as userRoute} from "../../routes/routes";
-import Loading from "../Loading";
+import Loading from "../../components/Loading";
 import {toast} from "react-hot-toast";
-import ScrollBar from "../ScrollBar";
+import ScrollBar from "../../components/ScrollBar";
+import {useGetUsersByGroup} from "../../query";
+import {adminGetImpersonateLoginToken} from "js-api-client";
 
 const KycUsers = () => {
-    const axiosPrivate = useAxiosPrivate();
-    const [isLoading, setIsLoading] = useState(true);
-    const [users, setUsers] = useState({total: 0, users: []});
     const [status, setStatus] = useState("kyc-requested");
-    const [error, setError] = useState();
     const [paginate] = usePagination();
-    let maxPage = Math.ceil(users.total / paginate.perPage)
 
-    useEffect(() => {
-        let isMounted = true;
-        const controller = new AbortController();
-        setIsLoading(true)
-        setError(false)
-        const getKYCUser = async () => {
-            await axiosPrivate.get(`/admin/auth/v1/group/${status}/members`, {
-                params: {
-                    offset: paginate.perPage * (paginate.page - 1),
-                    size: paginate.perPage
-                }
-            }, {
-                signal: controller.signal
-            }).then((res) => {
-                isMounted && setUsers(res.data);
-            }).catch((err) => {
-                setError(err);
-            }).finally(() => setIsLoading(false));
-        }
-        getKYCUser()
+    const {data: users, isLoading, error} = useGetUsersByGroup(status, paginate.page, paginate.perPage)
 
-        return () => {
-            isMounted = false;
-            controller.abort();
-        }
-    }, [status])
-
-
-    const impersonateLogin = async (user) => {
-        const params =
-            {
-                "clientId": process.env.REACT_APP_CLIENT_ID,
-                "clientSecret": process.env.REACT_APP_CLIENT_SECRET,
-                "userId": user
-            }
-        return await axiosPrivate.post('/admin/auth/v1/user/impersonate', params)
+    const impersonateLogin = async (userId) => {
+        await adminGetImpersonateLoginToken(userId)
             .then((res) => {
-                return window.open(process.env.REACT_APP_FRONT_URL + "/login?token=" + res.data.access_token, '_blank');
+                return window.open(window.env.REACT_APP_FRONT_URL + "/login?impersonate=" + res.data.access_token, '_blank');
             }).catch((e) => {
                 toast.error(e.response.data.message);
             })
@@ -97,7 +61,7 @@ const KycUsers = () => {
                 <table className="table table-bordered rounded text-center col-12 striped">
                     <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                     <tr>
-                        <th scope="col"></th>
+                        <th scope="col"/>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
@@ -117,33 +81,33 @@ const KycUsers = () => {
                                 </td>
                             </tr>
                             : users?.users?.length === 0 ?
-                                <tr>
-                                    <td colSpan="12" className="text-center" style={{height: "50vh"}}>No User Exist</td>
-                                </tr> :
-                                users?.users?.map((user, index) => <tr key={user.id}>
-                                    <th scope="row">{index + 1}</th>
-                                    <td>{user.firstName}</td>
-                                    <td>{user.lastName}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.id}</td>
-                                    <td>
-                                        <img className="table-img"
-                                             src={user.isEnabled ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
-                                             alt=""/></td>
-                                    <td>
-                                        <img className="table-img"
-                                             src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
-                                             alt=""/></td>
-                                    <td>
-                                        <img className="table-img pointer" onClick={() => impersonateLogin(user.id)}
-                                             src={toAbsoluteUrl("media/img/double-arrow.svg")} alt=""/></td>
-                                    <td>
-                                        <Link to={"/" + userRoute + "/" + user.id}>
-                                            <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
-                                                 alt=""/>
-                                        </Link>
-                                    </td>
-                                </tr>)
+                            <tr>
+                                <td colSpan="12" className="text-center" style={{height: "50vh"}}>No User Exist</td>
+                            </tr> :
+                            users?.users?.map((user, index) => <tr key={user.id}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                                <td>{user.email}</td>
+                                <td>{user.id}</td>
+                                <td>
+                                    <img className="table-img"
+                                         src={user.isEnabled ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
+                                         alt=""/></td>
+                                <td>
+                                    <img className="table-img"
+                                         src={user.isEmailVerified ? toAbsoluteUrl("media/img/check.svg") : toAbsoluteUrl("media/img/remove.svg")}
+                                         alt=""/></td>
+                                <td>
+                                    <img className="table-img pointer" onClick={() => impersonateLogin(user.id)}
+                                         src={toAbsoluteUrl("media/img/double-arrow.svg")} alt=""/></td>
+                                <td>
+                                    <Link to={"/" + userRoute + "/" + user.id}>
+                                        <img className="table-img pointer" src={toAbsoluteUrl("media/img/info.svg")}
+                                             alt=""/>
+                                    </Link>
+                                </td>
+                            </tr>)
                     }
                     </tbody>
                 </table>
@@ -155,9 +119,11 @@ const KycUsers = () => {
                 </div>
                 : ""
             }
-            <div className="mt-5">
-                <Pagination maxPage={maxPage} paginate={paginate}/>
+            {(!isLoading && users.total > paginate.perPage) &&
+            <div className="mt-2">
+                <Pagination total={users.total} paginate={paginate}/>
             </div>
+            }
         </div>
     </div>
 }

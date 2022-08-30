@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Chart from 'react-apexcharts'
-import {GetSupersetAccessToken, GetTotalOrders, GetTotalTrades} from "./api";
-import Loading from "../../Loading";
+import {GetSupersetAccessToken, GetTotalOrders} from "./api";
+import Loading from "../../../components/Loading";
 
-const TradesChart = () => {
+const OrdersChart = () => {
 
 
     const [loading, setLoading] = useState(true);
@@ -19,9 +19,9 @@ const TradesChart = () => {
     useEffect(() => {
 
         GetSupersetAccessToken().then((res) => {
-            GetTotalTrades(res.data.access_token).then((res) => {
+            GetTotalOrders(res.data.access_token).then((res) => {
                 const series = [{
-                    name: 'trades'
+                    name: 'orders'
                 }];
                 series[0].data = res.data.result[0].data.map((t) => t["COUNT(id)"])
                 const xAxis = res.data.result[0].data.map((t) => t["__timestamp"])
@@ -29,11 +29,11 @@ const TradesChart = () => {
                 setTimes(xAxis)
                 setLoading(false)
                 setError(false)
-            }).catch((e) => {
+            }).catch(() => {
                 setLoading(false)
                 setError(true)
             })
-        }).catch((e) => {
+        }).catch(() => {
             setLoading(false)
             setError(true)
         })
@@ -68,6 +68,7 @@ const TradesChart = () => {
                 }
             },
 
+
             theme: {
                 mode: 'dark',
                 palette: 'palette1',
@@ -80,8 +81,6 @@ const TradesChart = () => {
             }
 
         },
-
-        colors:['#7def9d', '#3acc6a', '#2c9c18'],
         dataLabels: {
             enabled: false
         },
@@ -97,15 +96,16 @@ const TradesChart = () => {
                 },
             },
         },
+
         yaxis: {
-            min: 100,
-            max: 4000,
+
             labels: {
                 style: {
                     colors: "#ecececc7"
                 },
             },
         },
+
         tooltip: {
             enabled: true,
             theme: "dark",
@@ -131,4 +131,4 @@ const TradesChart = () => {
     );
 };
 
-export default TradesChart;
+export default OrdersChart;
