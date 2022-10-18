@@ -61,10 +61,10 @@ const Login = () => {
              style={{backgroundImage: `url('${toAbsoluteUrl("/media/img/spaceStar.png")}')`}}>
             <div className="login-content text-center">
                 <div className="mb-5">
-                    <img src={toAbsoluteUrl("media/img/opexLogoPlus.svg")} className="mb-5" alt=""/>
+                    <img src={toAbsoluteUrl("/assets/logo/logo.svg")} className="mb-3" alt=""/>
                     <h1 className="fw-bold mt-5">Welcome To Admin Panel</h1>
                 </div>
-                <form className="this-login-form mt-5" onSubmit={handleSubmit}>
+                <form className="this-login-form mt-2" onSubmit={handleSubmit}>
                     {
                         loading ? <Loading/> : <>
                             <div className="d-flex flex-column justify-content-center align-items-center"

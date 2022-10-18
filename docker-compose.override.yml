@@ -5,6 +5,4 @@ services:
     build:
       context: .
       args:
-        - REACT_APP_DEFAULT_DIRECTION=LTR
-        - REACT_APP_BRAND_NAME=OPEX
         - GENERATE_SOURCEMAP=$GENERATE_SOURCEMAP

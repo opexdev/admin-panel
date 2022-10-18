@@ -7,7 +7,7 @@ const SideBar = ({closeMenu}) => {
     return <div className={`sidebar text-color ${closeMenu ? "close" : "open"}`}>
 
         <div className="d-flex justify-content-center align-items-center py-5">
-            <img src={toAbsoluteUrl('/media/img/logo.svg')} alt="logo" className="logo"/>
+            <img src={toAbsoluteUrl('/assets/logo/logo-mini.svg')} alt="logo" className="logo"/>
         </div>
 
 
