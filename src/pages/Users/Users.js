@@ -86,7 +86,7 @@ const Users = () => {
                 </div>
                 : ""
             }
-            {(!isLoading && users.total > paginate.perPage)&&
+            {(!isLoading && users?.total > paginate.perPage)&&
             <div className="mt-2">
                 <Pagination total={users.total} paginate={paginate}/>
             </div>

@@ -98,7 +98,7 @@ const Withdraws = () => {
                     </div>
                     : ""
                 }
-                {(!isLoading && withdraws.total > paginate.perPage) &&
+                {(!isLoading && withdraws?.total > paginate.perPage) &&
                 <div className="mt-2">
                     <Pagination total={withdraws.total} paginate={paginate}/>
                 </div>
