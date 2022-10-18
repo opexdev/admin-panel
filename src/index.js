@@ -8,6 +8,11 @@ import Opex from "./Opex";
 import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
+//add custom title & meta
+const meta = document.getElementsByTagName('meta')
+document.title = window.env.REACT_APP_TITLE;
+meta.description.content = window.env.REACT_APP_DESCRIPTION_CONTENT
+
 // Create a react-query client
 const queryClient = new QueryClient()
 
