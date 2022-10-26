@@ -2,7 +2,7 @@ FROM node:lts-fermium AS build
 COPY . /admin-panel
 WORKDIR /admin-panel
 ENV NODE_ENV production
-RUN npm ci
+RUN npm install
 ARG GENERATE_SOURCEMAP=false
 ENV GENERATE_SOURCEMAP $GENERATE_SOURCEMAP
 RUN npm run build
