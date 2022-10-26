@@ -7,6 +7,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading";
 import ScrollBar from "../../components/ScrollBar";
 import {useGetWithdrawsReq} from "../../query";
+import Date from "../../components/Date/Date";
 
 const Withdraws = () => {
     const [paginate, searchParams, setSearchParams] = usePagination();
@@ -75,7 +76,7 @@ const Withdraws = () => {
                                 <td>{withdraw.acceptedFee}</td>
                                 <td>{withdraw.appliedFee}</td>
                                 <td>{withdraw.destNote}</td>
-                                <td>{moment(withdraw.createDate).format("YYYY/MM/DD hh:mm:ss")}</td>
+                                <td><Date date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</td>
                                 <td>
                                     {withdraw?.status === "CREATED" ? "-" :
                                         <img className="table-img"

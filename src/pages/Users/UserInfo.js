@@ -39,19 +39,16 @@ const UserInfo = () => {
                                 <UserInfoBox title="User Name" value={user.username}/>
                                 <UserInfoBox title="First Name" value={user.firstName}/>
                                 <UserInfoBox title="Last Name" value={user.lastName}/>
-                                <UserInfoBox title="First Name (En)" value={attrHandler("firstNameEn")}/>
-                                <UserInfoBox title="Last Name (En)" value={attrHandler("lastNameEn")}/>
-                                <UserInfoBox title="Birthday (Gregorian)" value={attrHandler("birthdayG")}/>
-                                <UserInfoBox title="Birthday (Jalali)" value={attrHandler("birthdayJ")}/>
+                                <UserInfoBox title="ID Number" value={attrHandler("idNumber")}/>
+                                <UserInfoBox title="Birthday" value={attrHandler("birthday")}/>
                                 <UserInfoBox title="Postal Code" value={attrHandler("postalCode")}/>
                                 <UserInfoBox title="Mobile" value={attrHandler("mobile")}/>
+
                             </div>
                             <div className="col-6 ps-3">
                                 <UserInfoBox title="Email" value={user.email}/>
                                 <UserInfoBox title="Nationality" value={attrHandler("nationality")}/>
                                 <UserInfoBox title="Residence" value={attrHandler("residence")}/>
-                                <UserInfoBox title="Passport Number" value={attrHandler("passportNumber")}/>
-                                <UserInfoBox title="Telephone" value={attrHandler("telephone")}/>
                                 <UserInfoBox title="Email Verified" value={user?.isEmailVerified} isBoolean={true}/>
                                 <UserInfoBox title="Enable" value={user?.isEnabled} isBoolean={true}/>
                                 <UserInfoBox title="Required Actions"
@@ -60,8 +57,7 @@ const UserInfo = () => {
                                                        key={action}>{action}</span>) : "-"}
                                 />
                                 <UserInfoBox title="Groups" value={user?.groups.length ? user.groups.map((group) =>
-                                    <span
-                                        className={`badge ${group.name === "kyc-requested" ? "bg-primary" : (group.name === "kyc-rejected" || group.name === "kyc-blocked") ? "bg-danger" : "bg-success"} mx-2 py-2`}
+                                    <span className={`badge ${group.name === "kyc-requested" ? "bg-primary" : (group.name === "kyc-rejected" || group.name === "kyc-blocked") ? "bg-danger" : "bg-success"} mx-2 py-2`}
                                         key={group.id}>{group.name.toUpperCase()}</span>) : "-"}/>
                             </div>
                         </div>

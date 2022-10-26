@@ -13,7 +13,7 @@ const SideBar = ({closeMenu}) => {
 
         <ul className="side-menu">
             <li>
-                <NavLink to={Routes.dashboard}>
+                <NavLink to={Routes.dashboard} end>
                     <Icon iconName="icon-layersm text-color font-size-md-plus"/>
                     <span className="">Dashboard</span>
                 </NavLink>

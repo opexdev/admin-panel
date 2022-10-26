@@ -2,6 +2,7 @@ import Clock from "./Clock/Clock";
 import {toAbsoluteUrl} from "../utils";
 import useLogout from "../../hooks/useLogout";
 import Title from "./Title/Title";
+import Date from "../Date/Date";
 
 
 const TopBar = () => {
@@ -12,7 +13,7 @@ const TopBar = () => {
             <Title/>
         </h4>
         <div>
-            <Clock/>
+            <Date/> - <Clock/>
             <img
                 onClick={logout}
                 className="ms-3"

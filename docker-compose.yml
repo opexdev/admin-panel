@@ -10,6 +10,7 @@ services:
       - CLIENT_ID=$CLIENT_ID
       - CLIENT_SECRET=$CLIENT_SECRET
       - SUPERSET_URL=$SUPERSET_URL
+      - CALENDAR_TYPE=$WEB_APP_CALENDAR_TYPE
     networks:
       - default
     deploy:
