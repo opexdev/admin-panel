@@ -19,10 +19,10 @@ const Clock = () => {
         }, [delay]);
     }
 
-    const [time, setTime] = useState(moment().format("jYYYY/jM/jD - HH:mm:ss"))
+    const [time, setTime] = useState(moment().format("HH:mm:ss"))
 
     useInterval(() => {
-        setTime(moment().format("YYYY/M/D - jYYYY/jM/jD - HH:mm:ss"))
+        setTime(moment().format("HH:mm:ss"))
     }, 1000);
 
     return (

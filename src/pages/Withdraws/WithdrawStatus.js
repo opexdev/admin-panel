@@ -29,8 +29,9 @@ const WithdrawStatus = ({id, withdraw, refetch}) => {
 
     return (
         <div className="col-12 userInfoBox mt-5">
-            <h4 className="py-3 primary-bg rounded d-flex justify-content-center align-items-center">Withdraw
-                Status</h4>
+            <h4 className="py-3 primary-bg rounded d-flex justify-content-center align-items-center">
+                Withdraw Status
+            </h4>
             <div className="d-flex flex-column  d-flex justify-content-between align-items-center col-12 px-4 py-4"
                  style={{height: "100%"}}>
                 <div className="col-12 d-flex flex-row justify-content-center align-items-center"
