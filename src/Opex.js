@@ -17,6 +17,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {getTokenByRefreshToken} from "js-api-client";
 import setupAxios from "./setupAxios";
+import WhiteList from "./pages/WhiteList/WhiteList";
 
 function Opex() {
     const {auth, setAuth} = useAuth();
@@ -70,6 +71,7 @@ function Opex() {
                     <Route path={RoutesName.withdraws} element={<Withdraws/>}/>
                     <Route path={RoutesName.showWithdraw} element={<WithdrawInfo/>}/>
                     <Route path={RoutesName.KYC} element={<KycUsers/>}/>
+                    <Route path={RoutesName.WhiteList} element={<WhiteList/>}/>
                 </Route>
                 <Route path="unauthorized" element={<Unauthorized/>}/>
             </Route>

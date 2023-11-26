@@ -10,4 +10,5 @@ export const users = "users";
 export const showUser = "users/:id";
 
 export const KYC = "kyc";
+export const WhiteList = "white-list";
 

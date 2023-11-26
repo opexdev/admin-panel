@@ -2,6 +2,7 @@ import {toAbsoluteUrl} from "../utils";
 import {NavLink} from "react-router-dom";
 import * as Routes from "../../routes/routes";
 import Icon from "../Icon/Icon";
+import {WhiteList} from "../../routes/routes";
 
 const SideBar = ({closeMenu}) => {
     return <div className={`sidebar text-color ${closeMenu ? "close" : "open"}`}>
@@ -9,7 +10,6 @@ const SideBar = ({closeMenu}) => {
         <div className="d-flex justify-content-center align-items-center py-5">
             <img src={toAbsoluteUrl('/assets/logo/logo-mini.svg')} alt="logo" className="logo"/>
         </div>
-
 
         <ul className="side-menu">
             <li>
@@ -34,6 +34,12 @@ const SideBar = ({closeMenu}) => {
                 <NavLink to={Routes.KYC}>
                     <Icon iconName="icon-kycicon text-color font-size-md-plus"/>
                     <span className="">KYC</span>
+                </NavLink>
+            </li>
+            <li className="has-child">
+                <NavLink to={Routes.WhiteList}>
+                    <Icon iconName="icon-user_groups text-color font-size-md-plus"/>
+                    <span className="">White List</span>
                 </NavLink>
             </li>
         </ul>

@@ -1,6 +1,7 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import * as RoutesName from "../../../routes/routes";
+import WhiteList from "../../../pages/WhiteList/WhiteList";
 
 const Title = () => {
 
@@ -12,6 +13,7 @@ const Title = () => {
                 <Route path={RoutesName.KYC} element="KYC"/>
                 <Route path={RoutesName.withdraws} element="Withdraws"/>
                 <Route path={RoutesName.showWithdraw} element="Withdraws"/>
+                <Route path={RoutesName.WhiteList} element="White List"/>
             </Routes>
     );
 };
