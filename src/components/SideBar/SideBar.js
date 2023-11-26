@@ -2,6 +2,7 @@ import {toAbsoluteUrl} from "../utils";
 import {NavLink} from "react-router-dom";
 import * as Routes from "../../routes/routes";
 import Icon from "../Icon/Icon";
+import {WhiteList} from "../../routes/routes";
 
 const SideBar = ({closeMenu}) => {
     return <div className={`sidebar text-color ${closeMenu ? "close" : "open"}`}>
@@ -34,6 +35,12 @@ const SideBar = ({closeMenu}) => {
                 <NavLink to={Routes.KYC}>
                     <Icon iconName="icon-kycicon text-color font-size-md-plus"/>
                     <span className="">KYC</span>
+                </NavLink>
+            </li>
+            <li className="has-child">
+                <NavLink to={Routes.WhiteList}>
+                    <Icon iconName="icon-user_groups text-color font-size-md-plus"/>
+                    <span className="">White List</span>
                 </NavLink>
             </li>
         </ul>

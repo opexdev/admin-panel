@@ -1,0 +1,29 @@
+.button {
+    all: unset;
+    background-color: #d73e36;
+    border-radius: 4px;
+    color: #fff;
+    padding: 1vh 1.75vw;
+}
+.findButton {
+    all: unset;
+    height: 5.3vh;
+    background-color: #18a979;
+    border-radius: 4px;
+    color: #fff;
+    width: 15%;
+    text-align: center;
+}
+.showAllButton {
+    all: unset;
+    height: 5.3vh;
+    background-color: #ff8124;
+    border-radius: 4px;
+    color: #fff;
+    width: 15%;
+    text-align: center;
+}
+
+.total {
+    /*font-size: 1.5rem;*/
+}
