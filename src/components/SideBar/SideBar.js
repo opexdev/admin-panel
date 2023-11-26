@@ -11,7 +11,6 @@ const SideBar = ({closeMenu}) => {
             <img src={toAbsoluteUrl('/assets/logo/logo-mini.svg')} alt="logo" className="logo"/>
         </div>
 
-
         <ul className="side-menu">
             <li>
                 <NavLink to={Routes.dashboard} end>

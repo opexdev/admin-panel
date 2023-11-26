@@ -61,7 +61,6 @@ const WhiteList = () => {
             setAddLoading(false)
         })
 
-      
     }
 
     const content = () => {
@@ -72,7 +71,6 @@ const WhiteList = () => {
                 </td>
             </tr>
         }
-
         if (whiteUsers?.length === 0 ) {
             return <tr>
                 <td colSpan="12" className="text-center" style={{height: "50vh"}}>No User Exist</td>
