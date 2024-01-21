@@ -72,7 +72,7 @@ const Withdraws = () => {
                                          src={toAbsoluteUrl("media/img/assets/" + withdraw.destCurrency + ".svg")}
                                          alt=""/>
                                 </td>
-                                <td>{withdraw.amount.toLocaleString()}</td>
+                                <td>{withdraw.amount}</td>
                                 <td>{withdraw.acceptedFee}</td>
                                 <td>{withdraw.appliedFee}</td>
                                 <td>{withdraw.destNote}</td>

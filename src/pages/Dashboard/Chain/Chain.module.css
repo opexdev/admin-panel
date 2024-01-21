@@ -1,0 +1,13 @@
+.box {
+    background: #282a36;
+    color: rgba(236, 236, 236, 0.7803921569) !important;
+    border-color: rgba(36, 38, 51, 0.9803921569) !important;
+    border-radius: 5px !important;
+}
+
+.striped div:nth-child(even){
+    background-color: #38384678;
+    -webkit-transition: background-color 0.4s;
+    -o-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+}
