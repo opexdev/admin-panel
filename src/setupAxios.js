@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import {getTokenByRefreshToken} from "js-api-client";
 
-export default function setupAxios(axios, auth, setAuth, timeout = 10000) {
+export default function setupAxios(axios, auth, setAuth, timeout = 600000) {
     axios.defaults.baseURL = window.env.REACT_APP_API_BASE_URL;
     axios.defaults.headers.Accept = 'application/json';
     axios.defaults.timeout = timeout;

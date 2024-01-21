@@ -11,4 +11,6 @@ export const showUser = "users/:id";
 
 export const KYC = "kyc";
 export const WhiteList = "white-list";
+export const Wallet = "wallet";
+export const ChainAndToken = "chain-token";
 
