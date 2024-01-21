@@ -44,8 +44,14 @@ const SideBar = ({closeMenu}) => {
             </li>
             <li className="has-child">
                 <NavLink to={Routes.Wallet}>
-                    <Icon iconName="icon-user_groups text-color font-size-md-plus"/>
+                    <Icon iconName="icon-layersm text-color font-size-md-plus"/>
                     <span className="">Wallet</span>
+                </NavLink>
+            </li>
+            <li className="has-child">
+                <NavLink to={Routes.ChainAndToken}>
+                    <Icon iconName="icon-layersm text-color font-size-md-plus"/>
+                    <span className="">Chain And Token</span>
                 </NavLink>
             </li>
         </ul>

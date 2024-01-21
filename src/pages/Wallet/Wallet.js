@@ -57,7 +57,7 @@ const Wallet = () => {
                                     <td>{wallet?.title?.slice(wallet?.title.indexOf("-") +1, wallet?.title?.end) }</td>
                                     <td>{wallet?.title?.slice(0, wallet?.title.indexOf("-"))}</td>
                                     <td>{wallet?.walletType}</td>
-                                    <td>{wallet?.balance?.toLocaleString()}</td>
+                                    <td>{wallet?.balance}</td>
                                     <td>{wallet?.currency}</td>
 
                                 </tr>)

@@ -16,6 +16,7 @@ const Title = () => {
                 <Route path={RoutesName.showWithdraw} element="Withdraws"/>
                 <Route path={RoutesName.WhiteList} element="White List"/>
                 <Route path={RoutesName.Wallet} element="Wallet"/>
+                <Route path={RoutesName.ChainAndToken} element="Chain And Token"/>
             </Routes>
     );
 };

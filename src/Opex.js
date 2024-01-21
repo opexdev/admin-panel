@@ -19,6 +19,7 @@ import {getTokenByRefreshToken} from "js-api-client";
 import setupAxios from "./setupAxios";
 import WhiteList from "./pages/WhiteList/WhiteList";
 import Wallet from "./pages/Wallet/Wallet";
+import ChainAndToken from "./pages/ChainAndToken/ChainAndToken";
 
 
 function Opex() {
@@ -75,6 +76,7 @@ function Opex() {
                     <Route path={RoutesName.KYC} element={<KycUsers/>}/>
                     <Route path={RoutesName.WhiteList} element={<WhiteList/>}/>
                     <Route path={RoutesName.Wallet} element={<Wallet/>}/>
+                    <Route path={RoutesName.ChainAndToken} element={<ChainAndToken/>}/>
                 </Route>
                 <Route path="unauthorized" element={<Unauthorized/>}/>
             </Route>

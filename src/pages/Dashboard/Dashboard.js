@@ -2,6 +2,9 @@ import React from "react";
 import Loading from "../../components/Loading";
 import ScrollBar from "../../components/ScrollBar";
 import {useGetUsersByGroup, useGetUsersList, useGetWithdrawsReq} from "../../query";
+import Chains from "../ChainAndToken/Chains/Chains";
+import Chain from "./Chain/Chain";
+import Token from "./Token/Token";
 
 const Dashboard = () => {
 
@@ -10,9 +13,9 @@ const Dashboard = () => {
     const {data: kycReq} = useGetUsersByGroup("kyc-requested", 1, 10)
 
     return <ScrollBar>
-        <div className="d-flex flex-column justify-content-around align-items-center" style={{minHeight: "100%"}}>
+        <div className="d-flex flex-column justify-content-start align-items-center" style={{minHeight: "100%"}}>
 
-            <div className="d-flex flex-row justify-content-between align-items-center" style={{width: "80%"}}>
+            <div className="d-flex flex-row justify-content-between align-items-center my-5" style={{width: "80%"}}>
                 <div className="d-flex justify-content-center align-items-center primary-bg"
                      style={{width: "30%", height: "20vh", borderRadius: "7px"}}>
                     {users !== null ?
@@ -45,9 +48,16 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="d-flex flex-row justify-content-between align-items-center"
+            <div className="d-flex flex-row justify-content-between align-items-start my-4 col-12" style={{width: "80%"}}>
+
+                <Chain/>
+                <Token/>
+
+            </div>
+
+            {/*<div className="d-flex flex-row justify-content-between align-items-center"
                  style={{width: "80%", height: "30vh"}}>
-                {/*<div className="d-flex flex-column justify-content-center align-items-center primary-bg py-4 px-2"
+                <div className="d-flex flex-column justify-content-center align-items-center primary-bg py-4 px-2"
                      style={{width: "46%", borderRadius: "7px"}}>
                     <h4 className="mb-2">Total Orders</h4>
                     <div className="mt-2" style={{width: "100%"}}><OrdersChart/></div>
@@ -56,8 +66,9 @@ const Dashboard = () => {
                      style={{width: "46%", borderRadius: "7px"}}>
                     <h4 className="mb-2">Total Trades</h4>
                     <div className="mt-2" style={{width: "100%"}}><TradesChart/></div>
-                </div>*/}
-            </div>
+                </div>
+            </div>*/}
+
         </div>
     </ScrollBar>
 }
