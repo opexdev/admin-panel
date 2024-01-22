@@ -23,7 +23,7 @@ const Token = () => {
 
     }
     return (
-        <div className={`flex-column col-5 justify-content-start`}>
+        <div className={`flex-column justify-content-start`} style={{width: "30%"}}>
 
             <p className={`font-size-md-plus mb-4`}>Token List</p>
 

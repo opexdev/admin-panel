@@ -6,6 +6,7 @@ import ScrollBar from "../../components/ScrollBar";
 const Wallet = () => {
 
     const [params, setParams] = useState({
+        "excludeSystem": false,
         "limit": 500,
         "offset": 0
     });

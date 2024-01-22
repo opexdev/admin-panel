@@ -5,6 +5,7 @@ export {useGetWithdrawInfo} from "./hooks/useGetWithdrawInfo";
 export {useGetUsersByGroup} from "./hooks/useGetUsersByGroup";
 export {useGetWhiteList} from "./hooks/useGetWhiteList";
 export {useGetWalletData} from "./hooks/useGetWalletData";
+export {useGetWalletTotalUsers} from "./hooks/useGetWalletTotalUsers";
 export {useGetChains} from "./hooks/useGetChains";
 export {useGetAllBalanceByChain} from "./hooks/useGetAllBalanceByChain";
 export {useGetTotalBalanceByChain} from "./hooks/useGetTotalBalanceByChain";
