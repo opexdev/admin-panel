@@ -5,6 +5,7 @@ import {useGetUsersByGroup, useGetUsersList, useGetWithdrawsReq} from "../../que
 import Chains from "../ChainAndToken/Chains/Chains";
 import Chain from "./Chain/Chain";
 import Token from "./Token/Token";
+import BriefWallet from "./BriefWallet/BriefWallet";
 
 const Dashboard = () => {
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
     return <ScrollBar>
         <div className="d-flex flex-column justify-content-start align-items-center" style={{minHeight: "100%"}}>
 
-            <div className="d-flex flex-row justify-content-between align-items-center my-5" style={{width: "80%"}}>
+            <div className="d-flex flex-row justify-content-between align-items-center my-5" style={{width: "90%"}}>
                 <div className="d-flex justify-content-center align-items-center primary-bg"
                      style={{width: "30%", height: "20vh", borderRadius: "7px"}}>
                     {users !== null ?
@@ -48,10 +49,11 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="d-flex flex-row justify-content-between align-items-start my-4 col-12" style={{width: "80%"}}>
+            <div className="d-flex flex-row justify-content-between align-items-start my-4 col-12" style={{width: "90%"}}>
 
                 <Chain/>
                 <Token/>
+                <BriefWallet/>
 
             </div>
 

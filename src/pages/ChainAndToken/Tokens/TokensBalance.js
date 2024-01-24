@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useGetTokenAllBalanceById, useGetTokenTotalBalanceById} from "../../../query";
 import classes from "../Chains/Chains.module.css";
 import ToggleSwitch from "../../../components/ToggleSwitch/ToggleSwitch";
+import {BN} from "../../../utils/utils";
 
 const TokensBalance = ({chainId}) => {
 
@@ -29,9 +30,9 @@ const TokensBalance = ({chainId}) => {
             No Data!
         </div>
         else return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-3 ${classes.box} ${classes.striped}`}>
-            {data?.map((balance, index) => <div className={`d-flex flex-row col-12 py-4 px-4`} key={index}>
+            {data?.map((balance, index) => <div className={`d-flex flex-row col-12 py-4 px-4 font-size-sm-plus`} key={index}>
                 <span className={`col-8`}>{index + 1} <span className={`mx-3`}></span> {balance?.address}</span>
-                <span className={`col-4 text-center`} style={{color: '#fff'}}>Balance: <span className={`font-size-md`}>{balance?.balance}</span></span>
+                <span className={`col-4 text-center`} style={{color: '#fff'}}>Balance: <span className={`font-size-md`}>{new BN(balance?.balance).toFormat()}</span></span>
             </div>)}
         </div>
 
@@ -69,7 +70,7 @@ const TokensBalance = ({chainId}) => {
                     <span className={`mx-1`}> </span>
                     <span className={``}>Total Balance: </span>
                     <span className={`mx-2`}> </span>
-                    <span className={`font-size-md`} style={{color: 'white'}}>{ totalIsLoading ? "Loading..." : total?.balance}</span>
+                    <span className={`font-size-md`} style={{color: 'white'}}>{ totalIsLoading ? "Loading..." : new BN(total?.balance).toFormat()}</span>
                 </div>
             </div>
 
