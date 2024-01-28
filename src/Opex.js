@@ -66,9 +66,10 @@ function Opex() {
             {/* public routes */}
             <Route path={RoutesName.login} element={<Login/>}/>
             <Route element={<Layout/>}>
-                <Route path="/" element={<Dashboard/>}/>
+
                 {/* private routes */}
                 <Route element={<RequireAuth allowedRoles={[ROLES.admin]}/>}>
+                    <Route path="/" element={<Dashboard/>}/>
                     <Route path={RoutesName.users} element={<Users/>}/>
                     <Route path={RoutesName.showUser} element={<UserInfo/>}/>
                     <Route path={RoutesName.withdraws} element={<Withdraws/>}/>
