@@ -5,11 +5,11 @@ import Tokens from "./Tokens/Tokens";
 
 const ChainAndToken = () => {
     return (
-        <div className={`col-12 d-flex flex-row`}>
-            <div className={`col-6 `}>
+        <div className={`d-flex flex-row`}  style={{width: "100%"}}>
+            <div className={``} style={{width: "48%"}}>
                 <Chains/>
             </div>
-            <div className={`col-6`}>
+            <div className={``}  style={{width: "48%"}}>
                 <Tokens/>
             </div>
 
