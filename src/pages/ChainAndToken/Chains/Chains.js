@@ -42,7 +42,7 @@ const Chains = () => {
 
     return (
         <ScrollBar>
-            <div className={`flex-column col-12 justify-content-start px-5 py-5`}>
+            <div className={`flex-column col-12 justify-content-start px-3 py-4`}>
                 <p className={`font-size-md-plus mb-4`}>Chain List</p>
 
                 {

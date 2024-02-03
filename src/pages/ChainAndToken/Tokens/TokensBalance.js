@@ -30,9 +30,11 @@ const TokensBalance = ({chainId}) => {
             No Data!
         </div>
         else return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-3 ${classes.box} ${classes.striped}`}>
-            {data?.map((balance, index) => <div className={`d-flex flex-row col-12 py-4 px-4 font-size-sm-plus`} key={index}>
+            {data?.map((balance, index) => <div className={`d-flex flex-row col-12 py-4 px-2 font-size-sm`} key={index}>
                 <span className={`col-8`}>{index + 1} <span className={`mx-3`}></span> {balance?.address}</span>
-                <span className={`col-4 text-center`} style={{color: '#fff'}}>Balance: <span className={`font-size-md`}>{new BN(balance?.balance).toFormat()}</span></span>
+                <span className={`col-2 text-center`} style={{color: '#fff'}}>Balance: <span className={``}>{new BN(balance?.balance).toFormat()}</span></span>
+                <span className={`col-2 text-center`} style={{color: '#fff'}}> $ { new BN(balance?.balanceUsd).isZero() ? "---" : new BN(balance?.balanceUsd).toFormat()} </span>
+
             </div>)}
         </div>
 
