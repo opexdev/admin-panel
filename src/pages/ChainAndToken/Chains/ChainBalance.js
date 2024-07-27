@@ -8,8 +8,6 @@ import {BN} from "../../../utils/utils";
 
 const ChainBalance = ({chainId}) => {
 
-    console.log("chainId in chainbalance", chainId)
-
     const [params, setParams] = useState({
         "excludeZero": false,
     });
@@ -21,9 +19,6 @@ const ChainBalance = ({chainId}) => {
     useEffect(() => {
         refetch()
     }, [params]);
-
-
-    console.log("data ChainBalance", data)
 
     const content = ()=> {
 
@@ -49,8 +44,8 @@ const ChainBalance = ({chainId}) => {
 
         <>
 
-            <div className={`col-12 my-2 d-flex flex-row justify-content-between col-12 mt-4 py-4 px-4 ${classes.box}`}>
-               <div className={`d-flex flex-row col-5`}>
+            <div className={`col-12 my-2 d-flex flex-row justify-content-between align-items-center col-12 mt-4 py-4 px-4 ${classes.box} font-size-sm`}>
+               <div className={`d-flex flex-row align-items-center col-5`}>
                    <span className={``}>Exclude Zero Balance</span>
                    <span className={`mx-2`}> </span>
                    <ToggleSwitch
@@ -72,7 +67,7 @@ const ChainBalance = ({chainId}) => {
                        checked={params?.excludeZero}/>
                </div>
 
-                <div className={`d-flex flex-row justify-content-center col-7 text-center`}>
+                <div className={`d-flex flex-row justify-content-center align-items-center col-7 text-center`}>
                     <span className={``}>{total?.chain?.toUpperCase()}</span>
                     <span className={`mx-1`}> </span>
                     <span className={``}>Total Balance: </span>

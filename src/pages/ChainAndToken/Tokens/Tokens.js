@@ -20,7 +20,7 @@ const Tokens = () => {
         if (error) return <span>Error</span>
         if (isLoading) return <span>Loading...</span>
         else return <>
-            <div className={`d-flex flex-row `}>
+            <div className={`d-flex flex-row font-size-sm`}>
                 {data?.map((chain, index) => <span key={index} className={`${classes.chainTitle} ${chain?.id === chainId && classes.activeChain}`} onClick={()=>setChainId(chain?.id)}>{chain?.name}</span>)}
 
             </div>
