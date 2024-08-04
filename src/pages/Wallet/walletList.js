@@ -2,10 +2,6 @@ import React from 'react';
 import classes from './Wallet.module.css'
 
 const walletList = (data, index) => {
-
-    console.log("data in list", data)
-
-
     let head = (
         <div className="flex-row justify-content-between col-12 text-gray px-2 py-2" style={{backgroundColor:"var(--tableHeader)"}}>
             <span className="width-5 flex jc-start ai-center">Name</span>

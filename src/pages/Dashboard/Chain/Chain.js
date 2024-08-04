@@ -8,10 +8,6 @@ const Chain = () => {
 
     const {data, isLoading, error} = useGetTotalBalance();
 
-
-    console.log("data,", data )
-
-
     const content = () => {
         if (error) return <span>Error</span>
         if (isLoading) return <span>Loading...</span>
