@@ -1,8 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import * as RoutesName from "../../../routes/routes";
-import WhiteList from "../../../pages/WhiteList/WhiteList";
-import {Wallet} from "../../../routes/routes";
 
 const Title = () => {
 

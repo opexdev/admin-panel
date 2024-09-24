@@ -1,8 +1,6 @@
 import React from 'react';
 import classes from './Token.module.css'
-import {useGetTotalBalance} from "../../../query";
 import {useGetTokenTotalBalance} from "../../../query/hooks/useGetTokenTotalBalance";
-import ChainCard from "../Chain/ChainCard";
 import TokenCard from "./TokenCard";
 
 const Token = () => {
@@ -26,12 +24,9 @@ const Token = () => {
         <div className={`flex-column justify-content-start`} style={{width: "32%"}}>
 
             <p className={`font-size-md-plus mb-4`}>Token List</p>
-
             {
                 content()
             }
-
-
         </div>
     );
 };

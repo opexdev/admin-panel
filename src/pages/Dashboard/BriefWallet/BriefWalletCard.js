@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './BriefWallet.module.css'
 import {BN} from "../../../utils/utils";
 
 const BriefWalletCard = ({data, index}) => {

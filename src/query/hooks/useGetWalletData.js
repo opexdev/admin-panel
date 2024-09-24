@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {adminGetUsersList, adminGetWalletData} from "js-api-client";
+import {adminGetWalletData} from "js-api-client";
 
 export const useGetWalletData = (params) => {
     return useQuery(

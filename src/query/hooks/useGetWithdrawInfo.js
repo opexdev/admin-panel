@@ -9,7 +9,6 @@ export const useGetWithdrawInfo = (id) => {
         },
         {
             retry: 1,
-            select:(res) => res.withdraws[0],
             notifyOnChangeProps: ['data', 'isLoading', 'error'],
         });
 }

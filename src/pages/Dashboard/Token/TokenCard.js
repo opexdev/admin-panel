@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './Token.module.css'
 import {BN} from "../../../utils/utils";
 
 const TokenCard = ({data, index}) => {

@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import classes from './WhiteList.module.css'
 import Loading from "../../components/Loading";
 import {copyToClipboard, toAbsoluteUrl} from "../../components/utils";
-import {Link} from "react-router-dom";
-import Pagination from "../../components/Pagination/Pagination";
 import ScrollBar from "../../components/ScrollBar";
 import {useGetWhiteList} from "../../query";
 import {adminDeleteWhiteList, adminUpdateWhiteList} from "js-api-client/admin/whiteList";
@@ -47,7 +45,7 @@ const WhiteList = () => {
 
         setAddLoading(true)
 
-        const whiteListData = {"data":[`${email}`]}
+        const whiteListData = {"data":[`${email.toLowerCase()}`]}
 
         adminUpdateWhiteList(whiteListData)
             .then(() => {

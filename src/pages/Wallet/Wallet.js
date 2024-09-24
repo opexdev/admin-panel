@@ -13,21 +13,7 @@ const Wallet = () => {
         "offset": 0
     });
 
-    const {data, isLoading, error, refetch} = useGetWalletData(params);
-
-
-
-    /*const content = () => {
-        if (isLoading) return <div style={{height: "40vh"}}><Loading/></div>
-        if (error) return <div style={{height: "40vh"}}>Error</div>
-        if (data?.length === 0) return <div style={{height: "40vh"}} className={`flex jc-center ai-center`}>No Data...!</div>
-
-
-        else return <>
-            <WalletList data={data}/>
-        </>
-    }*/
-
+    const {data, isLoading, error} = useGetWalletData(params);
 
     return (
         <ScrollBar>
@@ -46,11 +32,6 @@ const Wallet = () => {
 
 
                     } }
-
-                    /*onchange={()=> setQuery({
-                        ...query,
-                        ascendingByTime: (prevState => !prevState)}
-                    )}*/
                     checked={params?.excludeSystem}/>
             </div>
             <div className="col-12 d-flex flex-column justify-content-between align-items-center px-5">
@@ -96,11 +77,6 @@ const Wallet = () => {
                     </div>
                     : ""
                 }
-             {/*   {(!isLoading && users?.total > paginate.perPage)&&
-                    <div className="mt-2">
-                        <Pagination total={users.total} paginate={paginate}/>
-                    </div>
-                }*/}
             </div>
         </ScrollBar>
     );

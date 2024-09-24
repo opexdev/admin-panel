@@ -6,7 +6,7 @@ import {useGetChains} from "../../../query";
 
 const Chains = () => {
 
-    const {data, isLoading, error, refetch} = useGetChains();
+    const {data, isLoading, error} = useGetChains();
 
 
     const [chainId, setChainId] = useState(null);

@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './ChainAndToken.module.css'
 import Chains from "./Chains/Chains";
 import Tokens from "./Tokens/Tokens";
 

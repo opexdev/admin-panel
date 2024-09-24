@@ -2,7 +2,6 @@ import {toAbsoluteUrl} from "../utils";
 import {NavLink} from "react-router-dom";
 import * as Routes from "../../routes/routes";
 import Icon from "../Icon/Icon";
-import {Wallet, WhiteList} from "../../routes/routes";
 
 const SideBar = ({closeMenu}) => {
     return <div className={`sidebar text-color ${closeMenu ? "close" : "open"}`}>

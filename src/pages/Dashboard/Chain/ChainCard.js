@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './Chain.module.css'
 import {BN} from "../../../utils/utils";
 
 const ChainCard = ({data, index}) => {

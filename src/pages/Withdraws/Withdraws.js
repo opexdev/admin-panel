@@ -3,11 +3,11 @@ import {Link} from "react-router-dom";
 import {toAbsoluteUrl} from "../../components/utils";
 import moment from "moment/moment";
 import usePagination from "../../hooks/usePagination";
-import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading";
 import ScrollBar from "../../components/ScrollBar";
 import {useGetWithdrawsReq} from "../../query";
 import Date from "../../components/Date/Date";
+import SimplePagination from "../../components/SimplePagination/SimplePagination";
 
 const Withdraws = () => {
     const [paginate, searchParams, setSearchParams] = usePagination();
@@ -43,11 +43,10 @@ const Withdraws = () => {
                     <thead className="py-2 my-2" style={{paddingBottom: "1vh !important"}}>
                     <tr>
                         <th scope="col"/>
-                        <th scope="col">Destination Network</th>
-                        <th scope="col">Destination Currency</th>
+                        <th scope="col">Currency</th>
+                        <th scope="col">Network</th>
+                        <th scope="col">User ID</th>
                         <th scope="col">Amount</th>
-                        <th scope="col">Accepted Fee</th>
-                        <th scope="col">Applied Fee</th>
                         <th scope="col">Note</th>
                         <th scope="col">Create Date</th>
                         <th scope="col">Status</th>
@@ -62,19 +61,18 @@ const Withdraws = () => {
                                     <Loading/>
                                 </td>
                             </tr>
-                            : withdraws.withdraws?.length === 0 ? <tr>
+                            : withdraws?.length === 0 ? <tr>
                                 <td colSpan="12" className="text-center" style={{height: "50vh"}}>No Withdraw Exist</td>
                             </tr> :
-                            withdraws.withdraws?.map((withdraw, index) => <tr key={withdraw.withdrawId}>
+                            withdraws?.map((withdraw, index) => <tr key={withdraw.withdrawId}>
                                 <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
-                                <td>{withdraw.destNetwork}</td>
                                 <td><img className="table-img"
-                                         src={toAbsoluteUrl("media/img/assets/" + withdraw.destCurrency + ".svg")}
+                                         src={toAbsoluteUrl("media/img/assets/" + withdraw.currency + ".svg")}
                                          alt=""/>
                                 </td>
+                                <td>{withdraw.destNetwork}</td>
+                                <td>{withdraw.uuid}</td>
                                 <td>{withdraw.amount}</td>
-                                <td>{withdraw.acceptedFee}</td>
-                                <td>{withdraw.appliedFee}</td>
                                 <td>{withdraw.destNote}</td>
                                 <td><Date date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</td>
                                 <td>
@@ -99,9 +97,9 @@ const Withdraws = () => {
                     </div>
                     : ""
                 }
-                {(!isLoading && withdraws?.total > paginate.perPage) &&
+                {!isLoading  &&
                 <div className="mt-2">
-                    <Pagination total={withdraws.total} paginate={paginate}/>
+                    <SimplePagination length={withdraws?.length} paginate={paginate}/>
                 </div>
                 }
             </div>
