@@ -1,5 +1,4 @@
 import {useQuery} from "@tanstack/react-query";
-import {adminGetChains} from "js-api-client";
 import axios from "axios";
 
 export const useGetChains = () => {

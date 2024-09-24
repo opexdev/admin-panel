@@ -1,9 +1,9 @@
-import Loading from "../../components/Loading";
 import React, {useState} from "react";
+import Loading from "../../components/Loading";
 import {adminSetWithdrawStatus} from "js-api-client";
 
 const WithdrawStatus = ({id, withdraw, refetch}) => {
-    const [error, setError] = useState();
+    const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [withdrawState, setWithdrawState] = useState();
     const [withdrawExp, setWithdrawExp] = useState();

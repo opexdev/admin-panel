@@ -11,29 +11,35 @@ const TokensBalance = ({chainId}) => {
     });
 
     const {data, isLoading, error, refetch} = useGetTokenAllBalanceById(chainId, params);
-    const {data:total, isLoading:totalIsLoading, error:totalError} = useGetTokenTotalBalanceById(chainId);
+    const {data: total, isLoading: totalIsLoading} = useGetTokenTotalBalanceById(chainId);
 
 
     useEffect(() => {
         refetch()
     }, [params]);
 
-    const content = ()=> {
+    const content = () => {
 
-        if (isLoading) return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
+        if (isLoading) return <div
+            className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
             Loading...
         </div>
-        if (error) return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
+        if (error) return <div
+            className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
             Error!
         </div>
-        if (data?.length === 0) return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
+        if (data?.length === 0) return <div
+            className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-5 ${classes.box}`}>
             No Data!
         </div>
-        else return <div className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-3 ${classes.box} ${classes.striped}`}>
+        else return <div
+            className={`d-flex flex-column justify-content-center align-items-center col-12 mt-4 py-3 ${classes.box} ${classes.striped}`}>
             {data?.map((balance, index) => <div className={`d-flex flex-row col-12 py-4 px-2 font-size-sm`} key={index}>
                 <span className={`col-8`}>{index + 1} <span className={`mx-3`}></span> {balance?.address}</span>
-                <span className={`col-2 text-center`} style={{color: '#fff'}}>Balance: <span className={``}>{new BN(balance?.balance).toFormat()}</span></span>
-                <span className={`col-2 text-center`} style={{color: '#fff'}}> $ { new BN(balance?.balanceUsd).isZero() ? "---" : new BN(balance?.balanceUsd).toFormat()} </span>
+                <span className={`col-2 text-center`} style={{color: '#fff'}}>Balance: <span
+                    className={``}>{new BN(balance?.balance).toFormat()}</span></span>
+                <span className={`col-2 text-center`}
+                      style={{color: '#fff'}}> $ {new BN(balance?.balanceUsd).isZero() ? "---" : new BN(balance?.balanceUsd).toFormat()} </span>
 
             </div>)}
         </div>
@@ -44,21 +50,24 @@ const TokensBalance = ({chainId}) => {
     return (
         <>
 
-            <div className={`col-12 my-2 d-flex flex-row justify-content-between align-items-center col-12 mt-4 py-4 px-4 ${classes.box} font-size-sm`}>
+            <div
+                className={`col-12 my-2 d-flex flex-row justify-content-between align-items-center col-12 mt-4 py-4 px-4 ${classes.box} font-size-sm`}>
                 <div className={`d-flex flex-row align-items-center col-5`}>
                     <span className={``}>Exclude Zero Balance</span>
                     <span className={`mx-2`}> </span>
                     <ToggleSwitch
 
-                        onchange={ () => {
+                        onchange={() => {
 
-                            setParams(prevState => {return {
-                                ...prevState,
-                                excludeZero: !prevState.excludeZero
-                            }})
+                            setParams(prevState => {
+                                return {
+                                    ...prevState,
+                                    excludeZero: !prevState.excludeZero
+                                }
+                            })
 
 
-                        } }
+                        }}
 
                         /*onchange={()=> setQuery({
                             ...query,
@@ -72,15 +81,11 @@ const TokensBalance = ({chainId}) => {
                     <span className={`mx-1`}> </span>
                     <span className={``}>Total Balance: </span>
                     <span className={`mx-2`}> </span>
-                    <span className={`font-size-md`} style={{color: 'white'}}>{ totalIsLoading ? "Loading..." : new BN(total?.balance).toFormat()}</span>
+                    <span className={`font-size-md`}
+                          style={{color: 'white'}}>{totalIsLoading ? "Loading..." : new BN(total?.balance).toFormat()}</span>
                 </div>
             </div>
-
             {content()}
-
-
-
-
         </>
     );
 };

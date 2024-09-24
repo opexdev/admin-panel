@@ -11,7 +11,6 @@ import Date from "../../components/Date/Date";
 const WithdrawInfo = () => {
     let {id} = useParams();
     const {data: withdraw, isLoading, error, refetch} = useGetWithdrawInfo(id)
-
     return (
         <ScrollBar>
             <div className="col-12" style={{padding: "5vh 3vw"}}>
@@ -23,8 +22,9 @@ const WithdrawInfo = () => {
                     : ""
                 }
                 <div className="col-12 userInfoBox">
-                    <h4 className="py-3 primary-bg rounded d-flex justify-content-center align-items-center">Withdraw
-                        Information</h4>
+                    <h4 className="py-3 primary-bg rounded d-flex justify-content-center align-items-center">
+                        Withdraw Information
+                    </h4>
                     {isLoading ? <div className="col-12 d-flex justify-content-center align-items-center mt-4"
                                       style={{height: "50vh"}}><Loading/></div> : <>
                         <div className="d-flex flex-row">
@@ -46,7 +46,7 @@ const WithdrawInfo = () => {
                                     <span
                                         className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Owner Uuid</span>
                                     <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.ownerUuid || "-"}</span>
+                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.uuid || "-"}</span>
                                     <span
                                         className="col-1 secondary-bg border-start border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
                                         style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.ownerUuid)}>
@@ -56,68 +56,49 @@ const WithdrawInfo = () => {
                                 </div>
                                 <div className="d-flex flex-row rounded my-3 inputGroup">
                                     <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Request Date</span>
+                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Status</span>
                                     <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.requestDate ? <><Date  date={withdraw.requestDate}/> {moment(withdraw.requestDate).format("hh:mm:ss")}</> : "-"}</span>
+                                        className={`col-8 secondary-bg p-3 d-flex justify-content-center align-items-center`}>
+                                        {withdraw?.status === "CREATED" ? "-" :
+                                            <img className="table-img"
+                                                 src={withdraw.status === "DONE" ? toAbsoluteUrl("/media/img/check.svg") : toAbsoluteUrl("/media/img/remove.svg")}
+                                                 alt=""/>}
+                                    </span>
                                     <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
-                                        style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(<><Date  date={withdraw.requestDate}/> {moment(withdraw.requestDate).format("hh:mm:ss")}</>)}>
+                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
+                                        style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.status)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
                                     </span>
                                 </div>
                                 <div className="d-flex flex-row rounded my-3 inputGroup">
                                     <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Finalized Date</span>
+                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Create Date</span>
                                     <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.finalizedDate ? <><Date  date={withdraw.finalizedDate}/> {moment(withdraw.finalizedDate).format("hh:mm:ss")}</> : "-"}</span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
-                                        style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(<><Date  date={withdraw.finalizedDate}/> {moment(withdraw.finalizedDate).format("hh:mm:ss")}</>)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
-                                             alt="copy"/>
-                                    </span>
-                                </div>
-
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Request Transaction</span>
-                                    <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.requestTransaction || "-"}</span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
-                                        style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(withdraw.requestTransaction)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
-                                             alt="copy"/>
-                                    </span>
-                                </div>
-
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Finalized Transaction</span>
-                                    <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.finalizedTransaction || "-"}</span>
+                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.createDate ? <>
+                                        <Date
+                                            date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</> : "-"}</span>
                                     <span
                                         className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
                                         style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(withdraw.finalizedTransaction)}>
+                                        onClick={() => copyToClipboard(<><Date
+                                            date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</>)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
                                     </span>
                                 </div>
-
                                 <div className="d-flex flex-row rounded my-3 inputGroup">
                                     <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Accepted Fee</span>
+                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Last Change Date</span>
                                     <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.acceptedFee || "-"}</span>
+                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.acceptDate ? <>
+                                        <Date
+                                            date={withdraw.acceptDate}/> {moment(withdraw.acceptDate).format("hh:mm:ss")}</> : "-"}</span>
                                     <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
+                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
                                         style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(withdraw.acceptedFee)}>
+                                        onClick={() => copyToClipboard(<><Date
+                                            date={withdraw.acceptDate}/> {moment(withdraw.acceptDate).format("hh:mm:ss")}</>)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
                                     </span>
@@ -136,6 +117,9 @@ const WithdrawInfo = () => {
                                              alt="copy"/>
                                     </span>
                                 </div>
+                            </div>
+
+                            <div className="col-6 pe-3">
 
                                 <div className="d-flex flex-row rounded my-3 inputGroup">
                                     <span
@@ -144,26 +128,8 @@ const WithdrawInfo = () => {
                                         className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.amount || "-"}</span>
                                     <span
                                         className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
-                                        style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.amount)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
-                                             alt="copy"/>
-                                    </span>
-                                </div>
-
-
-                            </div>
-
-                            <div className="col-6 pe-3">
-
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Destination Amount</span>
-                                    <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.destAmount || "-"}</span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
                                         style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(withdraw.destAmount)}>
+                                        onClick={() => copyToClipboard(withdraw.amount)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
                                     </span>
@@ -171,13 +137,13 @@ const WithdrawInfo = () => {
 
                                 <div className="d-flex flex-row rounded my-3 inputGroup">
                                     <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center rounded-start">Destination Currency</span>
+                                        className="col-3 primary-bg d-flex justify-content-center align-items-center rounded-start">Currency</span>
                                     <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.destCurrency || "-"}</span>
+                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.currency || "-"}</span>
                                     <span
                                         className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
                                         style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(withdraw.destCurrency)}>
+                                        onClick={() => copyToClipboard(withdraw.currency)}>
                                             <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                                  alt="copy"/>
                                     </span>
@@ -235,48 +201,6 @@ const WithdrawInfo = () => {
                                         onClick={() => copyToClipboard(withdraw.statusReason)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
-                                    </span>
-                                </div>
-
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span
-                                        className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Create Date</span>
-                                    <span
-                                        className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.createDate ? <><Date  date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</> : "-"}</span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
-                                        style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(<><Date  date={withdraw.createDate}/> {moment(withdraw.createDate).format("hh:mm:ss")}</>)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
-                                             alt="copy"/>
-                                    </span>
-                                </div>
-
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">Status</span>
-                                    <span className={`col-8 secondary-bg p-3 d-flex justify-content-center align-items-center`}>
-                                        {withdraw?.status === "CREATED" ? "-" :
-                                            <img className="table-img" src={withdraw.status === "DONE" ? toAbsoluteUrl("/media/img/check.svg") : toAbsoluteUrl("/media/img/remove.svg")} alt=""/>}
-                                    </span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
-                                        style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.status)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
-                                             alt="copy"/>
-                                    </span>
-                                </div>
-                                <div className="d-flex flex-row rounded my-3 inputGroup">
-                                    <span className="col-3 primary-bg d-flex justify-content-center align-items-center  rounded-start">
-                                        Accept Date
-                                    </span>
-                                    <span className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">
-                                        {withdraw.acceptDate ? (<><Date date={withdraw.acceptDate}/> {moment(withdraw.acceptDate).format("hh:mm:ss")}</>)  : "-"}
-                                    </span>
-                                    <span
-                                        className="col-1 secondary-bg border-start border-dark border-dark border-dark d-flex justify-content-center align-items-center rounded-end hover"
-                                        style={{cursor: "pointer"}}
-                                        onClick={() => copyToClipboard(<><Date  date={withdraw.acceptDate}/> {moment(withdraw.acceptDate).format("hh:mm:ss")}</>)}>
-                                        <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")} alt="copy"/>
                                     </span>
                                 </div>
                             </div>

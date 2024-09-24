@@ -6,7 +6,7 @@ import {useGetTokens} from "../../../query";
 
 const Tokens = () => {
 
-    const {data, isLoading, error, refetch} = useGetTokens();
+    const {data, isLoading, error} = useGetTokens();
 
 
     const [chainId, setChainId] = useState(null);

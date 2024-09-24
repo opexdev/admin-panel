@@ -1,8 +1,7 @@
 import React from "react";
 import Loading from "../../components/Loading";
 import ScrollBar from "../../components/ScrollBar";
-import {useGetUsersByGroup, useGetUsersList, useGetWithdrawsReq} from "../../query";
-import Chains from "../ChainAndToken/Chains/Chains";
+import {useGetUsersByGroup, useGetUsersList} from "../../query";
 import Chain from "./Chain/Chain";
 import Token from "./Token/Token";
 import BriefWallet from "./BriefWallet/BriefWallet";
@@ -10,12 +9,10 @@ import BriefWallet from "./BriefWallet/BriefWallet";
 const Dashboard = () => {
 
     const {data: users} = useGetUsersList(1, 10)
-    const {data: withdraws} = useGetWithdrawsReq(null, 1, 10)
     const {data: kycReq} = useGetUsersByGroup("kyc-requested", 1, 10)
 
     return <ScrollBar>
         <div className="d-flex flex-column justify-content-start align-items-center" style={{minHeight: "100%"}}>
-
             <div className="d-flex flex-row justify-content-between align-items-center my-5" style={{width: "90%"}}>
                 <div className="d-flex justify-content-center align-items-center primary-bg"
                      style={{width: "30%", height: "20vh", borderRadius: "7px"}}>
@@ -24,16 +21,6 @@ const Dashboard = () => {
                              style={{height: "100%"}}>
                             <h4 className="mb-2">Total Users</h4>
                             <span className="mt-2 text-info" style={{fontSize: "2rem"}}>{users?.total || "-"}</span>
-                        </div> : <Loading/>
-                    }
-                </div>
-                <div className="d-flex justify-content-center align-items-center primary-bg"
-                     style={{width: "30%", height: "20vh", borderRadius: "7px"}}>
-                    {withdraws !== null ?
-                        <div className="d-flex flex-column justify-content-center align-items-center"
-                             style={{height: "100%"}}>
-                            <h4 className="mb-2">Withdraws Req</h4>
-                            <span className="mt-2 text-info" style={{fontSize: "2rem"}}>{withdraws?.total || "-"}</span>
                         </div> : <Loading/>
                     }
                 </div>
