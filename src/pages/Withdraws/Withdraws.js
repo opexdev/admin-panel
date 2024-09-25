@@ -49,6 +49,7 @@ const Withdraws = () => {
                     <tr>
                         <th scope="col"/>
                         <th scope="col">Currency</th>
+                        <th scope="col"></th>
                         <th scope="col">Network</th>
                         <th scope="col">User ID</th>
                         <th scope="col">Amount</th>
@@ -72,9 +73,11 @@ const Withdraws = () => {
                             withdraws?.map((withdraw, index) => <tr key={withdraw.withdrawId}>
                                 <th scope="row">{(paginate.page - 1) * paginate.perPage + index + 1}</th>
                                 <td><img className="table-img"
-                                         src={toAbsoluteUrl("media/img/assets/" + withdraw.currency + ".svg")}
-                                         alt=""/>
+                                         src={toAbsoluteUrl("media/img/assets/" + withdraw.currency?.toLowerCase() + ".svg")}
+                                         alt=""/><span> </span>
                                 </td>
+
+                                <td>{withdraw.currency}</td>
                                 <td>{withdraw.destNetwork}</td>
                                 <td>{withdraw.uuid}</td>
                                 <td>{withdraw.amount}</td>
