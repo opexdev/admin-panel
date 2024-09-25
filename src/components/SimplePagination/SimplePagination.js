@@ -14,7 +14,7 @@ const SimplePagination = ({paginate, length}) => {
     }
 
     return (
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation">
             <ul className="pagination justify-content-center">
                 <li className={`page-item ${paginate.page === 1 ? "disabled" : ""}`}>
                     <button className="page-link" onClick={pervPage}>Previous</button>

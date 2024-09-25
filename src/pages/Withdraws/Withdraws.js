@@ -37,6 +37,11 @@ const Withdraws = () => {
                            defaultChecked={status === "REJECTED"} id="REJECTED"/>
                     <label className="form-check-label" htmlFor="REJECTED">Rejected</label>
                 </div>
+                <div className="form-check form-check-inline">
+                    <input className="form-check-input primary-bg" type="radio" name="status" value="CANCELED"
+                           defaultChecked={status === "CANCELED"} id="CANCELED"/>
+                    <label className="form-check-label" htmlFor="CANCELED">Canceled</label>
+                </div>
             </div>
             <div className="d-flex flex-column justify-content-between align-items-center" style={{width: "100%"}}>
                 <table className="table table-bordered rounded text-center col-12 striped">
