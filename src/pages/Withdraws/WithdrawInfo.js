@@ -49,7 +49,7 @@ const WithdrawInfo = () => {
                                         className="col-8 secondary-bg p-3 d-flex justify-content-center align-items-center">{withdraw.uuid || "-"}</span>
                                     <span
                                         className="col-1 secondary-bg border-start border-dark border-dark d-flex justify-content-center align-items-center rounded-end"
-                                        style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.ownerUuid)}>
+                                        style={{cursor: "pointer"}} onClick={() => copyToClipboard(withdraw.uuid)}>
                                         <img className="col-4" src={toAbsoluteUrl("/media/img/copy-link.svg")}
                                              alt="copy"/>
                                     </span>
